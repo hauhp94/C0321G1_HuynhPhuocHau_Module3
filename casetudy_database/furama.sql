@@ -93,28 +93,28 @@ foreign key (id_hop_dong) references hop_dong(id_hop_dong),
 foreign key (id_dich_vu_di_kem) references dich_vu_di_kem(id_dich_vu_di_kem)
 );
 insert into vi_tri
-values(1, 'le tan'),
-(2, 'phuc vu'),
-(3, 'chuyen vien'),
-(4, 'giam sat'),
-(5, 'quan ly'),
-(6, 'giam doc');
+values(1, 'Lễ tân'),
+(2, 'Phục vụ'),
+(3, 'Chuyên viên'),
+(4, 'Giám sát'),
+(5, 'Quản lý'),
+(6, 'Giám đốc');
 insert into trinh_do
-values (1, 'trung cap'),
-(2,'cao dang'),
-(3,'dai hoc'),
-(4,'sau dai hoc');
+values (1, 'Trung cấp'),
+(2,'Cao đẳng'),
+(3,'Đại chọ'),
+(4,'Sau đại học');
 insert into bo_phan
-values (1, 'sale marketing'),
-(2,'hanh chinh'),
-(3,'phuc vu'),
-(4,'quan ly');
+values (1, 'Sale marketing'),
+(2,'Hành chính'),
+(3,'Phục vụ'),
+(4,'Quản lý');
 insert into nhan_vien
 values
-(1,'dang van lam', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'gia lai'),
-(5,'nguyen cong phuong', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'gia lai'),
- (2,'nguyen cong toan', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'hue'),
- (3,'huynh phuoc hau', 1,2,1,'1994-03-02', 123123123, 15000.0, 0905123345,'da nang');
+(1,'Đặng Văn Lâm', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Quảng Trị'),
+(5,'Nguyễn Công Phượng', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Gia Lai'),
+ (2,'Nguyễn Văn Toàn', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Huế'),
+ (3,'Huỳnh Phước Hậu', 1,2,1,'1994-03-02', 123123123, 15000.0, 0905123345,'Đà Nẵng');
  insert into kieu_thue
  values (1, 'nam'),(2,'thang'),(3,'ngay'),(4,'gio');
  insert into loai_dich_vu
@@ -122,9 +122,12 @@ values
  insert into loai_khach
  values (1,'Diamond'),(2,'Platinium'),(3,'Gold'),(4,'Silver'),(5,'Member');
  insert into khach_hang
- values(1,2,'nguyen quang hai','1990-02-03',123234123,0905123123,'hai@gmail.com','ha noi'),
- (2,3,'bui tan truong','1990-02-03',123234123,0905123123,'truong@gmail.com','binh duong'),
- (3,1,'hoang duc','1995-02-03',155234123,0905123123,'duc@gmail.com','ha noi');
+ values(1,2,'Nguyễn Quang Hải','1990-02-03',123234123,0905123123,'hai@gmail.com','Hà Nội'),
+ (2,3,'Bùi Tấn Trường','1990-02-03',123234123,0905123123,'truong@gmail.com','Đà Nẵng'),
+ (3,1,'Nguyễn Hoàng Đức','1995-02-03',155234123,0905123123,'duc@gmail.com','Huế'),
+ (4,2,'Nguyễn Tiến Linh','1940-02-03',123234123,0905123123,'hai@gmail.com','Đà Nẵng'),
+ (5,3,'Nguyễn Thành Chung','1990-02-03',123234123,0905123123,'truong@gmail.com','Quảng Trị'),
+ (6,1,'Lê Văn Xuân','1995-02-03',155234123,0905123123,'xuan@gmail.com','Hà Nội');
  insert into dich_vu
  values(1, 'villa mua dong', 90, 5,10,2000000,1,1,'trong'),
  (2, 'villa mua he', 60, 5,10,2000000,1,1,'trong'),
@@ -146,10 +149,17 @@ values
  insert into hop_dong_chi_tiet
  values(1,2,1,1),(2,1,2,3),(3,1,2,3);
  select * from hop_Dong_chi_tiet;
- 
+ -- task 2 Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 select * from nhan_vien
-where ho_ten REGEXP '^[hkt][a-z ]{0,16}$' ;
-
-
-
+where ho_ten REGEXP '^[HKT][aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆ
+fFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTu
+UùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]{0,15}$' ;
+select * from nhan_vien;
+-- task 3 Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
+select * from khach_hang
+where (year(now())-year(ngay_sinh) between 18 and 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị') ;
+select * from khach_hang;
+-- select a.*, datediff(ngay_sinh,now()) as Age 
+-- from nhan_vien a;
+-- where year(ngay_sinh)>='1990';
 

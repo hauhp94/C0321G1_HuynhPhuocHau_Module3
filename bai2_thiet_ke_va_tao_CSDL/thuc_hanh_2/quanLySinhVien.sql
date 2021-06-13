@@ -1,5 +1,5 @@
-CREATE DATABASE QuanLySinhVien;
-USE QuanLySinhVien;
+CREATE DATABASE Quan_Ly_Sinh_Vien;
+USE Quan_Ly_Sinh_Vien;
 CREATE TABLE Class
 (
     ClassID   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,

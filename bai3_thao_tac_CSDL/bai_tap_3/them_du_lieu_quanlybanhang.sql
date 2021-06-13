@@ -16,3 +16,4 @@ values(1,'May Giat', 3),
 insert into order_detail
 values(1,1,3),(1,3,7),(1,4,2),(2,1,1),(3,1,8),(2,5,4),(2,3,3);
 select * from product;
+select order_id,order_date,order_Total_Price from order_;
