@@ -5,7 +5,7 @@ customer_id int primary key,
 customer_name varchar(255),
 customer_age int
 );
-create table order_(
+create table `order`(
 order_id int primary key,
 customer_id int,
 order_Date date,
@@ -22,6 +22,6 @@ order_detail_ID int,
 product_ID int,
 order_detail_QTY varchar(255),
 primary key (order_detail_ID , product_ID),
-FOREIGN KEY (order_detail_ID) REFERENCES order_(order_id),
+FOREIGN KEY (order_detail_ID) REFERENCES `order`(order_id),
 FOREIGN KEY (product_ID) REFERENCES product(product_ID)
 );

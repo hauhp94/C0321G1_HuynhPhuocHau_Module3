@@ -14,7 +14,7 @@ set ClassID = 2 where studentname='Hung';
 -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần. nếu trùng sắp theo tên tăng dần.
 select S.studentname, Sub.subname, M.mark
 from student S join mark m on s.Studentid=m.studentid join subject sub on m.subid = sub.subid
-order by mark desc;
+order by mark desc, StudentName asc;
 
 
 

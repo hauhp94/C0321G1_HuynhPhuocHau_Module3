@@ -158,6 +158,9 @@ select * from nhan_vien;
 -- task 3 Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 select * from khach_hang
 where (year(now())-year(ngay_sinh) between 18 and 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị') ;
+-- task 3 cách 2
+select * from khach_hang
+where (datediff(now(),ngay_sinh) between 18*365.25 and 50*365.25)and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị');
 select * from khach_hang;
 -- select a.*, datediff(ngay_sinh,now()) as Age 
 -- from nhan_vien a;
