@@ -4,3 +4,7 @@ select *,max(credit) from subject;
 -- Hiển thị các thông tin môn học có điểm thi lớn nhất.
 select *, max(mark) from mark;
 -- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
+select*, avg(mark) as diem_trung_binh  from student,mark;
+select* from mark; 
+
+

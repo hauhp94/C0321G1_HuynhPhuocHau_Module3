@@ -150,11 +150,14 @@ values
  values(1,2,1,1),(2,1,2,3),(3,1,2,3);
  select * from hop_Dong_chi_tiet;
  -- task 2 Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
-select * from nhan_vien
+ select*from nhan_vien
+where (ho_ten like 'H%' or ho_ten like 'K%' or ho_ten like 'T%') and CHAR_LENGTH(ho_ten)<16;
+ select*from nhan_vien
+where  CHAR_LENGTH(ho_ten)<16;
+select *from nhan_vien
 where ho_ten REGEXP '^[HKT][aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆ
 fFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTu
 UùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]{0,15}$' ;
-select * from nhan_vien;
 -- task 3 Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 select * from khach_hang
 where (year(now())-year(ngay_sinh) between 18 and 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị') ;
@@ -162,7 +165,11 @@ where (year(now())-year(ngay_sinh) between 18 and 50) and (dia_chi='Đà Nẵng'
 select * from khach_hang
 where (datediff(now(),ngay_sinh) between 18*365.25 and 50*365.25)and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị');
 select * from khach_hang;
--- select a.*, datediff(ngay_sinh,now()) as Age 
--- from nhan_vien a;
--- where year(ngay_sinh)>='1990';
+-- task 4 4. Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
+-- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
+select khach_hang.ho_ten_khach, count(hop_dong_chi_tiet.so_luong) as so_lan_dat_phong from khach_hang
+join hop_dong_chi_tiet on so_lan_dat_phong = hop_dong_chi_tiet.so_luong;
+select count(hop_dong_chi_tiet.so_luong) from hop_dong_chi_tiet;
+select * from hop_dong_chi_tiet;
+
 
