@@ -127,7 +127,10 @@ values
  (3,1,'Nguyễn Hoàng Đức','1995-02-03',155234123,0905123123,'duc@gmail.com','Huế'),
  (4,2,'Nguyễn Tiến Linh','1940-02-03',123234123,0905123123,'hai@gmail.com','Đà Nẵng'),
  (5,3,'Nguyễn Thành Chung','1990-02-03',123234123,0905123123,'truong@gmail.com','Quảng Trị'),
- (6,1,'Lê Văn Xuân','1995-02-03',155234123,0905123123,'xuan@gmail.com','Hà Nội');
+ (6,1,'Lê Văn Xuân','1995-02-03',155234123,0905123123,'xuan@gmail.com','Đà Nẵng'),
+ (7,1,'Lê Văn Vip','1995-02-03',155234123,0905123123,'xuan@gmail.com','Quảng Nam'),
+ (8,1,'Nguyễn Văn Sang','1995-02-03',155234123,0905123123,'xuan@gmail.com','Đà Lạt'),
+ (9,1,'Võ Huy Toàn','2004-02-03',155234123,0905123123,'xuan@gmail.com','Hải Phòng');
  insert into dich_vu
  values(1, 'villa mua dong', 90, 5,10,2000000,1,1,'trong'),
  (2, 'villa mua he', 60, 5,10,2000000,1,1,'trong'),
@@ -143,33 +146,86 @@ values
  (4, 'nước uống', 50000,2 , 'trong'),
  (5, 'thuê xe ', 600000, 2, 'trong');
  insert into hop_dong
- values(1,1,1,1,'2020-01-02','2021-03-02',5000000,22000000.0),
- (2,2,2,3,'2020-01-02','2021-03-02',2000000,14000000.0),
- (3,3,3,2,'2019-01-02','2021-03-02',4000000,12000000.0);
+ values(1,1,1,1,'2020-01-02','2021-03-02',5000000,null),
+ (2,2,2,3,'2020-01-02','2021-03-02',2000000,null),
+ (3,3,3,2,'2019-01-02','2021-03-02',4000000,null),
+ (4,3,1,2,'2018-12-02','2021-03-02',4000000,null),
+ (5,3,6,4,'2019-01-02','2021-03-02',5000000,null),
+ (6,3,7,5,'2019-01-02','2021-03-02',4000000,null),
+ (7,1,8,5,'2019-01-02','2021-03-02',2000000,null),
+ (8,1,8,6,'2019-01-02','2021-03-02',5000000,null),
+ (9,1,8,7,'2019-01-02','2021-03-02',5000000,null),
+ (10,1,7,6,'2019-01-02','2021-03-02',5000000,null);
  insert into hop_dong_chi_tiet
  values(1,2,1,1),(2,1,2,3),(3,1,2,3);
  select * from hop_Dong_chi_tiet;
- -- task 2 Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
- select*from nhan_vien
-where (ho_ten like 'H%' or ho_ten like 'K%' or ho_ten like 'T%') and CHAR_LENGTH(ho_ten)<16;
- select*from nhan_vien
-where  CHAR_LENGTH(ho_ten)<16;
-select *from nhan_vien
-where ho_ten REGEXP '^[HKT][aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆ
-fFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTu
-UùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]{0,15}$' ;
--- task 3 Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
+ -- Task 2 Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
+select* from nhan_vien 
+where char_length(SUBSTRING_INDEX(ho_ten, " ", -1))<=16 and  REGEXP_LIKE( SUBSTRING_INDEX(ho_ten, " ", -1),'^[HKT]') ;
+
+-- Task 3 Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 select * from khach_hang
-where (year(now())-year(ngay_sinh) between 18 and 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị') ;
--- task 3 cách 2
-select * from khach_hang
-where (datediff(now(),ngay_sinh) between 18*365.25 and 50*365.25)and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị');
-select * from khach_hang;
--- task 4 4. Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
--- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
-select khach_hang.ho_ten_khach, count(hop_dong_chi_tiet.so_luong) as so_lan_dat_phong from khach_hang
-join hop_dong_chi_tiet on so_lan_dat_phong = hop_dong_chi_tiet.so_luong;
-select count(hop_dong_chi_tiet.so_luong) from hop_dong_chi_tiet;
-select * from hop_dong_chi_tiet;
+where (timestampdiff(year, ngay_sinh, curdate()) between 18 and 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng Trị');
+
+/*Task 4 Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần.
+Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.*/
+select k.ho_ten_khach, k. id_khach_hang, count(h.id_khach_hang) as so_lan_dat from khach_hang k
+join hop_dong h on k.id_khach_hang = h.id_khach_hang
+join loai_khach l on k.id_loai_khach = l.id_loai_khach
+where l.ten_loai_khach='Diamond'
+group by id_khach_hang
+order by so_lan_dat;
+
+/* Task 5 Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc, TongTien 
+(Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong và Giá là từ bảng DichVuDiKem)
+ cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).*/
+ select * from hop_dong_chi_tiet;
+ select * from  dich_vu_di_kem;
+ select * from dich_vu;
+ select * from hop_dong;
+select k.id_khach_hang, k.ho_ten_khach, l.ten_loai_khach, h.id_hop_dong,d.ten_dich_vu,h.ngay_lap_hop_dong, h.ngay_ket_thuc, (d.chi_phi_thue+sum(dk.don_vi*dk.gia)) as tong_tien
+from khach_hang k
+left join loai_khach l on k.id_loai_khach = l.id_loai_khach
+left join hop_dong h on h.id_khach_hang = k.id_khach_hang
+left join dich_vu d on h.id_dich_vu = d.id_dich_vu
+left join hop_dong_chi_tiet hc on h.id_hop_dong = hc.id_hop_dong
+left join dich_vu_di_kem dk on hc.id_dich_vu_di_kem = dk.id_dich_vu_di_kem
+group by h.id_hop_dong
+union
+select k.id_khach_hang, k.ho_ten_khach, l.ten_loai_khach, h.id_hop_dong,d.ten_dich_vu,h.ngay_lap_hop_dong, h.ngay_ket_thuc,h.tong_tien
+from khach_hang k
+right join loai_khach l on k.id_loai_khach = l.id_loai_khach
+right join hop_dong h on h.id_khach_hang = k.id_khach_hang
+right join dich_vu d on h.id_dich_vu = d.id_dich_vu
+right join hop_dong_chi_tiet hc on h.id_hop_dong = hc.id_hop_dong
+right join dich_vu_di_kem dk on hc.id_dich_vu_di_kem = dk.id_dich_vu_di_kem
+group by h.id_hop_dong;
+
+select ngay_lap_hop_dong from hop_dong;
+;
+select k.id_khach_hang,k.ho_ten_khach,l.ten_loai_khach,h.id_hop_dong,d.ten_dich_vu,h.ngay_lap_hop_dong,h.ngay_ket_thuc,d.chi_phi_thue,c.so_luong,dk.gia,d.chi_phi_thue+sum(c.so_luong*dk.gia) as tong_tien
+from khach_hang k
+left join loai_khach l on k.id_loai_khach = l.id_loai_khach
+left join hop_dong h on k.id_khach_hang = h.id_khach_hang
+left join dich_vu d on h.id_dich_vu = d.id_dich_vu
+inner join hop_dong_chi_tiet c on h.id_hop_dong = c.id_hop_dong
+inner join dich_vu_di_kem dk on c.id_dich_vu_di_kem = dk.id_dich_vu_di_kem
+group by (h.id_hop_dong)
+having h.id_hop_dong is not null
+union
+select k.id_khach_hang,k.ho_ten_khach,l.ten_loai_khach,h.id_hop_dong,d.ten_dich_vu,h.ngay_lap_hop_dong,h.ngay_ket_thuc,d.chi_phi_thue,null,null,d.chi_phi_thue as tong_tien
+from khach_hang k
+left join loai_khach l on k.id_loai_khach = l.id_loai_khach
+left join hop_dong h on k.id_khach_hang = h.id_khach_hang
+left join dich_vu d on h.id_dich_vu = d.id_dich_vu
+where h.id_hop_dong not in (select hop_dong_chi_tiet.id_hop_dong from hop_dong_chi_tiet)
+union
+select k.id_khach_hang,k.ho_ten_khach,l.ten_loai_khach,null,null,null,null,null,null,null,null
+from khach_hang k
+left join loai_khach l on k.id_loai_khach = l.id_loai_khach
+where k.id_khach_hang not in (select hop_dong.id_khach_hang from hop_dong);
+select* from khach_hang;
+
+
 
 
