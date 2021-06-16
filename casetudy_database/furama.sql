@@ -286,62 +286,62 @@ select* from hop_Dong;
   join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem= dvdk.id_dich_vu_di_kem
   group by dvdk.ten_dich_vu_di_kem;
   
-/* Task 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
+/* Task 14 Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
  Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung. */
  
-/* Task 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai,
+/* Task 15 Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai,
  DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.*/
  
-/* Task 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.*/
+/* Task 16 Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.*/
 
-/* Task 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
+/* Task 17 Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
  chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/
  
-/* Task 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng). */
+/* Task 18 Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng). */
 
-/* Task 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.*/
+/* Task 19 Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.*/
 
-/* Task 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
+/* Task 20 Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
  thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang),
  HoTen, Email, SoDienThoai, NgaySinh, DiaChi.*/
  
-/* Task 21.	Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
+/* Task 21 Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
 và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”*/
 
-/* Task 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu”
+/* Task 22 Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu”
  đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.*/
  
-/* Task 23.	Tạo Clustered Index có tên là IX_KHACHHANG trên bảng Khách hàng.
+/* Task 23 Tạo Clustered Index có tên là IX_KHACHHANG trên bảng Khách hàng.
  Giải thích lý do và thực hiện kiểm tra tính hiệu quả của việc sử dụng INDEX*/
  
-/* Task 24.	Tạo Non-Clustered Index có tên là IX_SoDT_DiaChi trên các cột SODIENTHOAI và DIACHI trên bảng KHACH HANG 
+/* Task 24 Tạo Non-Clustered Index có tên là IX_SoDT_DiaChi trên các cột SODIENTHOAI và DIACHI trên bảng KHACH HANG 
 và kiểm tra tính hiệu quả tìm kiếm sau khi tạo Index.*/
 
-/* Task 25.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó 
+/* Task 25 Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó 
 với Id Khách hàng được truyền vào như là 1 tham số của Sp_1*/
 
-/* Task 26.	Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong 
+/* Task 26 Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong 
 với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung,
  với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.*/
  
-/* Task 27.	Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì 
+/* Task 27 Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì 
 hiển thị tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database*/
 
-/* Task 28.	Tạo triggers có tên Tr_2 Khi cập nhật Ngày kết thúc hợp đồng,
+/* Task 28 Tạo triggers có tên Tr_2 Khi cập nhật Ngày kết thúc hợp đồng,
  cần kiểm tra xem thời gian cập nhật có phù hợp hay không,
  với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày.
  Nếu dữ liệu hợp lệ thì cho phép cập nhật,
  nếu dữ liệu không hợp lệ thì in ra thông báo 
  “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database*/
  
-/* Task 29.	Tạo user function thực hiện yêu cầu sau:
+/* Task 29 Tạo user function thực hiện yêu cầu sau:
 a.	Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ.
 b.	Tạo user function Func_2: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng
  đến lúc kết thúc hợp đồng mà Khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng
  thời gian dựa vào từng lần làm hợp đồng thuê dịch vụ, không xét trên toàn bộ các lần làm hợp đồng).
  Mã của Khách hàng được truyền vào như là 1 tham số của function này.*/
 
-/* Task 30.	Tạo Stored procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
+/* Task 30 Tạo Stored procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
 từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng DichVu) 
 và xóa những HopDong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng HopDong) và những bản liên quan khác.*/
 
