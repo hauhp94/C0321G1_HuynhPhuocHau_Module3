@@ -268,17 +268,17 @@ select* from hop_Dong;
  TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết),
  TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019
  nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.*/
- select hd.id_hop_dong,nv.ho_ten as ten_nhan_vien, kh.ho_ten_khach as ten_khach_hang,kh.sdt as sdt_khach_hang,dv.ten_dich_vu, hdct.so_luong as so_luong_dvdk,hd.tien_dat_coc
+ select hd.id_hop_dong,nv.ho_ten as ten_nhan_vien, kh.ho_ten_khach as ten_khach_hang,kh.sdt as sdt_khach_hang,dv.ten_dich_vu, hdct.so_luong as so_luong_dvdk,hd.tien_dat_coc,hd.ngay_lap_hop_dong
  from hop_dong_chi_tiet hdct
  join hop_dong hd on hdct.id_hop_dong = hd.id_hop_dong
  join nhan_vien nv  on hd.id_nhan_vien = nv.id_nhan_vien
  join khach_hang kh on hd.id_khach_hang = kh.id_khach_hang
  join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
  join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
- group by hd.id_hop_dong
- order by hd.id_hop_dong;
- -- Task 13 Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
- -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+ where (hd.ngay_lap_hop_dong between '2019-10-01' and ' 2019-12-31') and not (hd.ngay_lap_hop_dong between '2019-01-01' and ' 2019-06-30')
+ group by hd.id_khach_hang;
+ /*Task 13 Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
+ (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).*/
  select dvdk.ten_dich_vu_di_kem, max(hdct.so_luong), kh.ho_ten_khach
  from khach_hang kh
   join hop_dong hd on kh.id_khach_hang = hd.id_khach_hang
