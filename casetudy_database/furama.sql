@@ -102,7 +102,7 @@ values( 'Lễ tân'),
 insert into trinh_do(trinh_do)
 values ('Trung cấp'),
 ('Cao đẳng'),
-('Đại chọ'),
+('Đại học'),
 ('Sau đại học');
 insert into bo_phan(ten_bo_phan)
 values ('Sale marketing'),
@@ -111,10 +111,14 @@ values ('Sale marketing'),
 ('Quản lý');
 select * from nhan_vien;
 insert into nhan_vien(ho_ten,id_vi_tri,id_trinh_do,id_bo_phan,ngay_sinh,so_cmnd,luong,sdt,dia_chi)
-values('Đặng Văn Lâm', 1,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Quảng Trị'),
-('Nguyễn Công Phượng', 2,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Gia Lai'),
- ('Nguyễn Văn Toàn', 3,2,1,'1990-03-02', 123123123, 15000.0, 0905123345,'Huế'),
- ('Huỳnh Phước Hậu', 1,2,1,'1994-03-02', 123123123, 15000.0, 0905123345,'Đà Nẵng');
+values('Đặng Văn Lâm', 1,1,1,'1950-03-16', 666555444, 12000.0, 0905123345,'Quảng Trị'),
+('Nguyễn Công Phượng', 2,1,2,'1960-03-17', 444333222, 13000.0, 0994222999,'Gia Lai'),
+('Nguyễn Văn Toàn', 3,2,3,'1990-03-28', 887766453, 13000.0, 0905123345,'Huế'),
+('Nguyễn Minh Vương', 1,3,4,'1994-03-30', 443322343, 15000.0, 0905123345,'Đà Nẵng'),
+('Bùi Tiến Dũng', 1,4,4,'2000-06-22', 567345123, 11000.0, 0905123345,'Cà Mau'),
+('Bùi Văn Tiến', 1,1,3,'1996-03-02', 432123432, 12000.0, 0905123345,'Đà Nẵng'),
+('Đặng Thành Long', 1,4,4,'1995-03-26', 213456789, 25000.0, 0945231244,'Bình Định'),
+('Phan Văn Long', 1,3,1,'1994-03-02', 234468234, 35000.0, 0333222111,'Đà Nẵng');
  insert into kieu_thue(ten_kieu_thue)
  values ('năm'),('tháng'),('ngày'),('giờ');
  insert into loai_dich_vu(ten_loai_dich_vu)
@@ -288,12 +292,36 @@ select* from hop_Dong;
   
 /* Task 14 Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
  Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung. */
+ select hd.id_hop_dong,dv.ten_dich_vu,dvdk.ten_dich_vu_di_kem,hdct.so_luong
+ from hop_dong hd
+ join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
+ join hop_dong_chi_tiet hdct on hd.id_hop_dong=hdct.id_hop_dong
+ join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
+ where hdct.so_luong=1
+ group by dvdk.ten_dich_vu_di_kem;
+ 
  
 /* Task 15 Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai,
  DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.*/
+ select nv.id_nhan_vien,nv.ho_ten,td.trinh_do,bp.ten_bo_phan,nv.sdt,nv.dia_chi, count(hd.id_hop_dong) as so_hop_dong
+ from nhan_vien nv
+ join trinh_do td on nv.id_trinh_do = td.id_trinh_do
+ join bo_phan bp on nv.id_bo_phan=bp.id_bo_phan
+ join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
+ where (hd.ngay_lap_hop_dong between '2018-01-01' and '2019-01-01')
+ group by nv.id_nhan_vien
+ having count(hd.id_hop_dong)<=3;
  
 /* Task 16 Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.*/
+delete nhan_vien
 
+select nv.ho_ten,count(hd.id_hop_dong) as so_luong_hop_dong from nhan_vien
+join hop_dong hd on hd.id_nhan_vien=nv.id_nhan_vien
+group by nv.id_nhan_vien;
+select *,count(hd.id_hop_dong) from nhan_vien nv
+left join hop_dong hd on hd.id_nhan_vien=nv.id_nhan_vien
+group by nv.id_nhan_vien
+;
 /* Task 17 Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
  chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/
  
