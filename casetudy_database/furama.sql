@@ -116,9 +116,10 @@ values('Đặng Văn Lâm', 1,1,1,'1950-03-16', 666555444, 12000.0, 0905123345,'
 ('Nguyễn Văn Toàn', 3,2,3,'1990-03-28', 887766453, 13000.0, 0905123345,'Huế'),
 ('Nguyễn Minh Vương', 1,3,4,'1994-03-30', 443322343, 15000.0, 0905123345,'Đà Nẵng'),
 ('Bùi Tiến Dũng', 1,4,4,'2000-06-22', 567345123, 11000.0, 0905123345,'Cà Mau'),
-('Bùi Văn Tiến', 1,1,3,'1996-03-02', 432123432, 12000.0, 0905123345,'Đà Nẵng'),
+('Bùi Văn Tiến', 1,1,3,'1996-03-02', 432123432, 12000.0, 0905123345,'Hải Châu'),
 ('Đặng Thành Long', 1,4,4,'1995-03-26', 213456789, 25000.0, 0945231244,'Bình Định'),
-('Phan Văn Long', 1,3,1,'1994-03-02', 234468234, 35000.0, 0333222111,'Đà Nẵng');
+('Phan Văn Long', 1,3,1,'1994-03-02', 234468234, 35000.0, 0333222111,'Đà Nẵng'),
+('Phan Bình', 2,4,2,'1980-03-02', 234238234, 65000.0, 0333222551,'Hải Châu');
  insert into kieu_thue(ten_kieu_thue)
  values ('năm'),('tháng'),('ngày'),('giờ');
  insert into loai_dich_vu(ten_loai_dich_vu)
@@ -165,8 +166,8 @@ values('Đặng Văn Lâm', 1,1,1,'1950-03-16', 666555444, 12000.0, 0905123345,'
  (1,5,6,'2017-07-02','2019-03-01',9900000,null),
  (2,4,1,'2016-06-06','2017-03-01',8800000,null),
  (4,3,3,'2018-01-19','2016-03-01',4400000,null),
- (4,3,3,'2019-01-21','2016-03-01',12000000,null),
- (4,3,5,'2018-02-20','2016-03-01',4500000,null);
+ (6,3,3,'2019-12-12','2016-03-01',12000000,null),
+ (9,3,5,'2019-12-12','2016-03-01',4500000,null);
  insert into hop_dong_chi_tiet(id_hop_dong ,id_dich_vu_di_kem ,so_luong )
  values(2,1,1),(1,2,3),(1,2,3),(1,2,2),(3,2,3),(4,2,5),(5,1,3),(6,4,3),(7,4,3),(8,2,3),(8,3,3),(9,5,1),(10,5,2),(11,2,1),(12,1,1),(13,2,3),(14,3,3);
  select * from hop_Dong_chi_tiet;
@@ -313,19 +314,30 @@ select* from hop_Dong;
  having count(hd.id_hop_dong)<=3;
  
 /* Task 16 Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.*/
-delete nhan_vien
-
-select nv.ho_ten,count(hd.id_hop_dong) as so_luong_hop_dong from nhan_vien
-join hop_dong hd on hd.id_nhan_vien=nv.id_nhan_vien
+delete from nhan_vien nv
+where not id_nhan_vien = (select id_nhan_vien from view_nhan_vien_va_hop_dong_2017_2019);
+create view view_nhan_vien_va_hop_dong_2017_2019 as
+select nv.id_nhan_vien,nv.ho_ten,count(hd.id_hop_dong) as so_luong_hop_dong,hd.ngay_lap_hop_dong
+from nhan_vien nv
+join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
+where (hd.ngay_lap_hop_dong between '2017-01-01' and now())
+group by nv.id_nhan_vien;
+select* from view_nhan_vien_va_hop_dong_2017_2019;
+select* from hop_dong;
+select nv.ho_ten, count(hd.id_hop_dong) as so_luong_hop_dong 
+from nhan_vien nv
+join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
 group by nv.id_nhan_vien;
 select *,count(hd.id_hop_dong) from nhan_vien nv
 left join hop_dong hd on hd.id_nhan_vien=nv.id_nhan_vien
-group by nv.id_nhan_vien
-;
+group by nv.id_nhan_vien;
 /* Task 17 Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
  chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/
+ -- update khach_hang kh
+-- join loai_khach lk on lk.id_khach_hang = kh.id_khach_hang;
+
  
-/* Task 18 Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng). */
+/* Task 18 Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng). */
 
 /* Task 19 Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.*/
 
@@ -333,25 +345,70 @@ group by nv.id_nhan_vien
  thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang),
  HoTen, Email, SoDienThoai, NgaySinh, DiaChi.*/
  
+ select nv.id_nhan_vien,nv.ho_ten as ten_nhan_vien,nv.sdt as sdt_nhan_vien, nv.ngay_sinh as ngay_sinh_nhan_vien,
+ nv.dia_chi as dia_chi_nhan_vien,kh.id_khach_hang,kh.ho_ten_khach,kh.email,kh.sdt as asdt_khach,
+ kh.ngay_sinh as ngay_sinh_khach, kh.dia_chi as dia_chi_khach from nhan_vien nv
+ left join hop_dong hd on nv.id_nhan_vien = hd.id_nhan_vien
+ left join khach_hang kh on hd.id_khach_hang=kh.id_khach_hang
+ group by nv.id_nhan_vien
+ union
+ select nv.id_nhan_vien,nv.ho_ten as ten_nhan_vien,nv.sdt as sdt_nhan_vien, nv.ngay_sinh as ngay_sinh_nhan_vien,
+ nv.dia_chi as dia_chi_nhan_vien,kh.id_khach_hang,kh.ho_ten_khach,kh.email,kh.sdt as asdt_khach,
+ kh.ngay_sinh as ngay_sinh_khach, kh.dia_chi as dia_chi_khach from nhan_vien nv
+ right join hop_dong hd on nv.id_nhan_vien = hd.id_nhan_vien
+ right join khach_hang kh on hd.id_khach_hang=kh.id_khach_hang
+ group by kh.id_khach_hang;
+ select* from khach_hang;
 /* Task 21 Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
 và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  với ngày lập hợp đồng là “12/12/2019”*/
+create or replace view v_nhan_vien as
+select nv.id_nhan_vien, nv.ho_ten,nv.ngay_sinh,nv.dia_chi,hd.ngay_lap_hop_dong from nhan_vien nv
+join hop_dong hd on nv.id_nhan_vien=hd.id_nhan_vien
+where nv.dia_chi='Hải Châu'and hd.ngay_lap_hop_dong='2019-12-12';
 
 /* Task 22 Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu”
  đối với tất cả các Nhân viên được nhìn thấy bởi khung nhìn này.*/
- 
+ update v_nhan_vien
+ set dia_chi='Liên Chiểu';
+
 /* Task 23 Tạo Clustered Index có tên là IX_KHACHHANG trên bảng Khách hàng.
  Giải thích lý do và thực hiện kiểm tra tính hiệu quả của việc sử dụng INDEX*/
- 
+ALTER TABLE khach_hang ADD INDEX ix_khach_hang(id_khach_hang);
+explain select* from khach_hang
+where id_khach_hang=2;
+
 /* Task 24 Tạo Non-Clustered Index có tên là IX_SoDT_DiaChi trên các cột SODIENTHOAI và DIACHI trên bảng KHACH HANG 
 và kiểm tra tính hiệu quả tìm kiếm sau khi tạo Index.*/
 
+ALTER TABLE khach_hang ADD INDEX ix_so_dien_thoai_dia_chi(sdt,dia_chi);
+explain select* from khach_hang
+where sdt=993123234;
+select * from khach_hang
+where sdt =993123234;
+
 /* Task 25 Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó 
 với Id Khách hàng được truyền vào như là 1 tham số của Sp_1*/
-
+Delimiter //
+Create Procedure SP_1(id int)
+    BEGIN
+    delete from khach_hang 
+    where id_khach_hang=id ;
+    END//
+DELIMITER ;
+call SP_1('2');
+select* from khach_hang;
 /* Task 26 Tạo Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong 
 với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung,
  với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.*/
- 
+ Delimiter //
+Create Procedure SP_2(id_nhan_vien int ,id_khach_hang int ,id_dich_vu int ,ngay_lap_hop_dong date,ngay_ket_thuc date ,tien_dat_coc double)
+    BEGIN
+    insert into hop_dong (id_nhan_vien ,id_khach_hang ,id_dich_vu,ngay_lap_hop_dong,ngay_ket_thuc,tien_dat_coc) 
+    values (id_nhan_vien ,id_khach_hang ,id_dich_vu,ngay_lap_hop_dong,ngay_ket_thuc,tien_dat_coc) ;
+    END//
+DELIMITER ;
+call sp_2(1,5,4,'2019-02-13','2020-06-09',8889990);
+select* from hop_dong;
 /* Task 27 Tạo triggers có tên Tr_1 Xóa bản ghi trong bảng HopDong thì 
 hiển thị tổng số lượng bản ghi còn lại có trong bảng HopDong ra giao diện console của database*/
 
