@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tao layout bang grid</title>
+<style>
+    .container div{
+        background-color: #D2FFA8;
+        border: 5px #7DFF00 solid;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+    .container{
+        font-family: sans-serif;
+        color: brown;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-areas:
+         'Header Header Header'
+         'Nav  Nav Nav'
+        'Section Section Aside'
+        'Article Article Aside'
+        'Footer Footer Footer';
+    }
+    .item1{grid-area: Header}
+    .item2{grid-area: Nav}
+    .item3{grid-area: Section}
+    .item4{grid-area: Aside}
+    .item5{grid-area: Article}
+    .item6{grid-area: Footer}
+
+
+</style>
+
+</head>
+<body>
+<div class="container">
+    <div class="item1">Header</div>
+    <div class="item2">Nav</div>
+    <div class="item3">Section</div>
+    <div class="item4">Aside</div>
+    <div class="item5">Article</div>
+    <div class="item6">Footer</div>
+</div>
+</body>
+</html>
