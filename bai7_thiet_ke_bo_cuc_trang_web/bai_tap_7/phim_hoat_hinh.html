@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển trang web xem hoạt hình trực tuyến
+    </title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                    'header header header header'
+            'head-link head-link head-link head-link'
+            'left-content right-content right-content right-content'
+            'footer footer footer footer';
+        }
+
+        .header {
+            width: 100%;
+            grid-area: header;
+            background-color: orange;
+            border: black 1px solid;
+            height: 60px;
+            align-content: center;
+            position: fixed;
+            top:0;
+
+        }
+
+        .head-link {
+            grid-area: head-link;
+            text-align: center;
+            height: 60px;
+            border: black 1px solid;
+            margin-top: 60px;
+        }
+        .head-link a{
+            font-weight: bold;
+            text-decoration: none;
+            color: red;
+            font-size: 30px;
+            padding: 20px;
+        }
+
+        .left-content,.right-content {
+            grid-area: left-content;
+            border: black 1px solid;
+            padding: 20px;
+        }
+      iframe{
+            display: block;
+            padding: 20px;
+        }
+
+        .right-content {
+            grid-area: right-content;
+            border: black 1px solid;
+            padding: 20px;
+
+        }
+
+        .footer {
+            grid-area: footer;
+            background-color: #CDCDCD;
+        }
+        @media screen and (max-width: 800px){
+            .container{
+                display: grid;
+                grid-template-areas:
+                        'header header header header'
+                        'head-link head-link head-link head-link'
+                        'left-content left-content left-content left-content'
+                        'right-content right-content right-content right-content'
+                        'footer footer footer footer';
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="doremon.jpg" height="50" width="70"/>
+        <img src="download.jpg" height="50" width="70"/>
+        <img src="doremon.jpg" height="50" width="70"/>
+        <img src="download.jpg" height="50" width="70"/>
+        <img src="doremon.jpg" height="50" width="70"/>
+        <img src="download.jpg" height="50" width="70"/>
+    </div>
+
+    <div class="head-link">
+        <a href="#">Phim hoạt hình </a>
+        <a href="#">Phim hoạt hình yêu thích</a>
+        <a href="#">Nhân vật hoạt hình</a>
+        <a href="#">Góp ý</a>
+
+    </div>
+    <div class="left-content">
+        <p>Nàng tiên ống tre</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6LiOvVmsahY"
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                 clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            Nàng Tiên Ống Tre Của Nobita</iframe>
+        <p>Muốn ăn thì lăn vào bếp</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/tsTmO4J60mQ"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+                 gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="right-content">
+        <p>Tập 9 xe tải đồ chơi</p>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Y5fgM2zLV3s"
+                title="YouTube video player" frameborder="0" allow="accelerometer;
+        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="footer">footer</div>
+</div>
+</body>
+</html>

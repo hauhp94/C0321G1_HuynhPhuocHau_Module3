@@ -17,6 +17,12 @@ body{
     background: #CDCDCD;
 
 }
+#container{
+    display: grid;
+}
+#footer{
+
+}
 #content{
     width: 60%;
     height: 1000px;

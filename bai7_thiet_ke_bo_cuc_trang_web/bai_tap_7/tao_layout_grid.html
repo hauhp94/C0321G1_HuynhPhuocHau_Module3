@@ -23,21 +23,48 @@
         'Article Article Aside'
         'Footer Footer Footer';
     }
+
     .item1{grid-area: Header}
     .item2{grid-area: Nav}
     .item3{grid-area: Section}
     .item4{grid-area: Aside}
     .item5{grid-area: Article}
     .item6{grid-area: Footer}
-
-
+    nav ul {
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin: 5px;
+    }
+   @media screen and (max-width: 500px){
+       .container{
+           display: grid;
+           grid-template-areas: 'Header Header Header'
+           'Nav  Nav Nav'
+           'Section Section Section'
+           'Article Article Article'
+           'Footer Footer Footer';
+       }
+       .item4{
+           display: none;
+       }
+   }
 </style>
 
 </head>
 <body>
 <div class="container">
-    <div class="item1">Header</div>
-    <div class="item2">Nav</div>
+    <div class="item1">Monday Times</div>
+    <div class="item2">
+        <nav>
+            <ul>
+                <li>News</li>
+                <li>Sports</li>
+                <li>Weather</li>
+            </ul>
+        </nav>
+    </div>
     <div class="item3">Section</div>
     <div class="item4">Aside</div>
     <div class="item5">Article</div>
