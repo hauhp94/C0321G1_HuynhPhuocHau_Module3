@@ -17,10 +17,9 @@
             grid-gap: 5px;
         }
 
-        .head{
-            height: 100px;
-            width: 100%;
-            background-color: #4267b2;
+
+        .main{
+            top: 100px
         }
         .left{
             border: 1px solid #CDCDCD;
@@ -51,11 +50,16 @@
         .content{grid-area: content}
         .right{grid-area: right}
         .footer{grid-area: footer}
-
+        .head{
+            height: 100px;
+            width: 100%;
+            background-color: #4267b2;
+            position: fixed;
+            top: 0;
+        }
     </style>
 </head>
 <body>
-<div class="head"><h1>Facebook</h1></div>
 <div class="main">
     <div class="left">
         <p>Nội dung left1</p>
@@ -82,6 +86,8 @@
     </div>
     <div class="right">Quảng cáo</div>
     <div class="footer">&copy; 2014 Facebook. All rights reserved.</div>
+    <div class="head"><h1>Facebook</h1></div>
+
 </div>
 
 </body>
