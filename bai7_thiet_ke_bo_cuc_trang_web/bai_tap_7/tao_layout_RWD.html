@@ -5,25 +5,149 @@
     <meta charset="UTF-8">
     <title>[Bài tập] Tạo layout với RWD
     </title>
-    <link rel="stylesheet" type="text/css" href="layout_RWD.css">
+    <style>
+        body{
+            font-family: Arial;
+        }
+        .main{
+            top: 60px;
+            position: relative;
+            display: grid;
+            grid-template-areas:
+        'menu menu  menu menu'
+        'left content content right'
+        'footer footer footer footer';
+        /*    'menu'*/
+        /*    'left '*/
+        /*    'right'*/
+        /*    'footer';*/
+        }
+        @media screen and (max-width: 600px){
+            .main{
+                top: 120px;
+                display: grid;
+                grid-template-areas:
+                        'menu menu menu menu'
+                        'content content content content'
+                        'left left right right'
+                        'footer footer footer footer';
+            }
+            .menu{
+                height: 120px;
+            }
+
+        }
+        .menu{
+            width: 100%;
+            grid-area: menu;
+            height: 60px;
+            background-color: #000000;
+            position: fixed;
+            top: 0;
+        }
+
+        .left{
+            grid-area: left;
+            height: 1000px;
+            text-align: center;
+            background: #CDCDCD;
+            display: block;
+        }
+
+        .content{
+            grid-area: content;
+            height: 1000px;
+            text-align: left;
+
+        }
+        .content p{
+            padding: 20px;
+        }
+        .right p, .left p{
+            display: block;
+            height: 20px;
+            left: 30px;
+            background: #73AD21;
+            text-align: center;
+        }
+        .right{
+            grid-area: right;
+            height: 1000px;
+            text-align: center;
+            background: #CDCDCD;
+            display: block;
+        }
+        .footer{
+            grid-area: footer;
+            height: 60px;
+            background: black;
+            text-align: center;
+            color: #73AD21;
+        }
+        .menu ul, #menu li{
+            padding: 15px;
+            margin:0;
+        }
+
+        .menu li{
+            position: relative;
+            float: left;
+            list-style: none;
+            margin: 0;
+            padding:0;
+        }
+
+        .menu li a{
+            width:100px;
+            height: 30px;
+            display: block;
+            text-decoration:none;
+            text-align: center;
+            line-height: 30px;
+            background-color: black;
+            color: white;
+        }
+
+        .menu ul ul li a{
+            width: 200px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .menu li a:hover{
+            background-color: red;
+        }
+
+        .menu ul ul{
+            position: absolute;
+            top: 30px;
+            left: 15px;
+            visibility: hidden;
+        }
+
+        .menu ul li:hover ul{
+            visibility: visible;
+        }
+    </style>
 </head>
 <body>
-<div id="menu">
-    <ul>
-        <li><a href="#">Logo</a></li>
-        <li><a href="#">Home </a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Project</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login</a></li>
-    </ul>
-</div>
-<div id="left">
+<div class="main">
+    <div class="menu">
+        <ul>
+            <li><a href="#" >Logo</a></li>
+            <li><a href="#">Home </a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Project</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+<div class="left">
     <p>link1</p>
     <p>link2</p>
     <p>link3</p>
 </div>
-<div id="content">
+<div class="content" >
     <h1 style="text-align: center">Welcome</h1>
     <p>
         HTML (viết tắt của từ Hypertext Markup Language, hay là "Ngôn ngữ Đánh dấu Siêu văn bản") là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. Nó có thể được trợ giúp bởi các công nghệ như CSS và các ngôn ngữ kịch bản giống như JavaScript.
@@ -38,10 +162,12 @@
 
         HTML có thể nhúng các chương trình được viết bằng scripting như JavaScript, điều này ảnh hưởng đến hành vi và nội dung của các trang web. Việc bao gồm CSS xác định giao diện và bố cục của nội dung. World Wide Web Consortium (W3C), trước đây là đơn vị bảo trì HTML và là người duy trì hiện tại của các tiêu chuẩn CSS, đã khuyến khích việc sử dụng CSS trên HTML trình bày rõ ràng kể từ năm 1997.[2]</p>
 </div>
-<div id="right">
-    <p>ADS 1</p>
-    <p>ADS 2</p>
+<div class="right">
+    <p>ADS 11111111111111</p>
+    <p>ADS 22222222222222</p>
 </div>
-<div id="footer">Footer</div>
+<div class="footer">Footer</div>
+</div>
+
 </body>
 </html>
