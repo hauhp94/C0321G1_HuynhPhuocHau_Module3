@@ -10,6 +10,10 @@
   <head>
     <title>$Title$</title>
     <style>
+      button{
+        background-color: cornflowerblue;
+        color: black;
+      }
       td {
         padding: 5px;
         color: darkblue;
