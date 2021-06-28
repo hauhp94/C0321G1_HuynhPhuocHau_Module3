@@ -44,7 +44,7 @@
       </tr>
       <tr>
         <td><p>List Price:</p></td>
-        <td><input type="number" name="giaNiemYet" placeholder="triệu vnd"></td>
+        <td><input type="number"  step="any" required name="giaNiemYet" placeholder="triệu vnd"></td>
       </tr>
       <tr>
         <td><p>Discount Percent:</p></td>
