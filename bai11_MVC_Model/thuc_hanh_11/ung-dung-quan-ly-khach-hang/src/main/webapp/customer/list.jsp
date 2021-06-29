@@ -3,13 +3,14 @@
 <html>
 <head>
     <title>Customer List</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
 </head>
-<body>
-<h1>Customers</h1>
+<body class="ml-5">
+<h1>Customers danh sách khách hàng</h1>
 <p>
     <a href="/customers?action=create">Create new customer </a>
 </p>
-<table border="1">
+<table class="table w-50">
     <tr>
         <td>Name</td>
         <td>Email</td>

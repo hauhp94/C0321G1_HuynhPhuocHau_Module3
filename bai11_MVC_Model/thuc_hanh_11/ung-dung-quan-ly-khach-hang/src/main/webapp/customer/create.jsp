@@ -21,7 +21,7 @@
 </p>
 <form method="post">
     <fieldset>
-        <legend>Customer information < /legend>
+        <legend>Customer information </legend>
         <table>
             <tr>
                 <td>Name: </td>
