@@ -11,7 +11,7 @@
     <title>View</title>
 </head>
 <body>
-<h1>Customer details</h1>
+<h1>Product details</h1>
 <table>
     <tr>
         <td>ID: </td>

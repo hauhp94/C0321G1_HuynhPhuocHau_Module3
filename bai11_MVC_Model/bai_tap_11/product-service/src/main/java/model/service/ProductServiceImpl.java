@@ -33,4 +33,10 @@ public class ProductServiceImpl implements ProductService {
     public void update(int id, Product product) {
     repository.update(id,product);
     }
+
+    @Override
+    public Product findByName(String name) {
+        return repository.findByName(name);
+    }
+
 }

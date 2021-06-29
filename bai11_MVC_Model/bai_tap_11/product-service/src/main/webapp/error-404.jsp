@@ -12,5 +12,8 @@
 </head>
 <body>
 <h1>NOT FOUND</h1>
+<p>
+    <a href="/product">Back to customer list</a>
+</p>
 </body>
 </html>

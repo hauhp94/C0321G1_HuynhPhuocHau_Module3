@@ -21,6 +21,18 @@ public class ProductRepositoryImpl implements ProductRepository {
         productList.put(8, new Product(8,"Nokia 9", 5500, "nokia9.jpg"));
         productList.put(9, new Product(9,"Samsung Note 10", 18990, "samsung.jpg"));
         productList.put(10, new Product(10,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(11, new Product(11,"LG G9", 13990, "iphone12.jpg"));
+        productList.put(12, new Product(12,"iPhone 12", 13990, "iphone12.jpg"));
+        productList.put(13, new Product(13,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(14, new Product(14,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(15, new Product(15,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(16, new Product(16,"iPhone 12", 13990, "iphone12.jpg"));
+        productList.put(17, new Product(17,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(18, new Product(10,"iPhone 12", 13990, "iphone12.jpg"));
+        productList.put(19, new Product(19,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(20, new Product(20,"LG G9", 13990, "lgg9.jpg"));
+        productList.put(21, new Product(21,"LG G9", 13990, "lgg9.jpg"));
+
     }
     @Override
     public List<Product> findAll() {
@@ -46,4 +58,14 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void update(int id, Product product) {
         productList.put(id,product);
     }
+
+    @Override
+    public  Product findByName(String name){
+        for(Product product: this.findAll()){
+            if(product.getNameProduct().equals(name))
+                return product;
+        }
+        return null;
+    }
+
 }

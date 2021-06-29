@@ -29,7 +29,9 @@
         </tr>
         <tr>
             <td>image:</td>
-            <td><input type="text" name="image" value="${requestScope["product"].getImageProduct()}"></td>
+            <td>
+                <img src="/assert/image/${requestScope["product"].getImageProduct()}">
+            </td>
         </tr>
         <tr>
             <td>are you sure ?</td>
