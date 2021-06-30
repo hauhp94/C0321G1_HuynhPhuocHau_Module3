@@ -71,9 +71,7 @@ public class ProductServlet extends HttpServlet {
             product.setPriceProduct(price);
             product.setImageProduct(image);
             this.service.update(id, product);
-            request.setAttribute("product", product);
-            dispatcher = request.getRequestDispatcher("product/edit.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("/product");
         }
     }
 

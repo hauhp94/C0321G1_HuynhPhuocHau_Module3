@@ -34,10 +34,7 @@ public class UserDAO implements IUserDAO {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -143,7 +140,7 @@ public class UserDAO implements IUserDAO {
         try (Connection connection = getConnection();
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS_SORT_BY_NAME);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS_SORT_BY_NAME)) {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
