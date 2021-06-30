@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assert/bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
 
 </head>
@@ -52,8 +52,8 @@
                     <td><a href="/product?action=edit&id=${product.getIdProduct()}" class="btn btn-warning">Edit</a>
                     </td>
                     <td>
-<%--                        <button onclick="onDelete('${product.id}','${product.name}')" type="button" class="btn btn-danger"></button>--%>
-                        <a href="/product?action=delete&id=${product.getIdProduct()}" class="btn btn-danger">Delete</a>
+                        <button onclick="onDelete('${product.getIdProduct()}','${product.getNameProduct()}')" type="button" class="btn btn-danger"data-toggle="modal" data-target="#modelId">Delete</button>
+<%--                        <a href="/product?action=delete&id=${product.getIdProduct()}" class="btn btn-danger">Delete</a>--%>
                     </td>
                 </tr>
             </c:forEach>
@@ -71,16 +71,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/product">
-           <input type="hidden" name="action" value="delete">
+            <form action="/product" method="post">
+                <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" value="" id="idProductDel">
                 <div class="modal-body">
                     Ban co muon xoa <input id="nameProductDel">
                 </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Ok</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Ok</button>
+                </div>
             </form>
         </div>
     </div>
@@ -89,12 +89,12 @@
 <script src="assert/datatables/js/jquery.dataTables.js"></script>
 <script src="assert/datatables/js/dataTables.bootstrap4.js"></script>
 <script src="assert/jquery/popper.min.js"></script>
-<script src="assert/js/bootstrap.js"></script>
+<script src="assert/bootstrap4/js/bootstrap.js"></script>
 <script>
-    function onDelete(id,name) {
-document.getElementById("idProductDel").value=id;
-console.log(name);
-document.getElementById("nameProductDel").value=name;
+    function onDelete(id, name) {
+        document.getElementById("idProductDel").value = id;
+        console.log(name);
+        document.getElementById("nameProductDel").value = name;
     }
 </script>
 

@@ -103,7 +103,7 @@ select* from hop_Dong;
  join khach_hang kh on hd.id_khach_hang = kh.id_khach_hang
  join dich_vu dv on hd.id_dich_vu=dv.id_dich_vu
  join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem=dvdk.id_dich_vu_di_kem
- where (hd.ngay_lap_hop_dong between '2019-10-01' and ' 2019-12-31') and not (hd.ngay_lap_hop_dong between '2019-01-01' and ' 2019-06-30')
+ where  (hd.ngay_lap_hop_dong between '2019-10-01' and ' 2019-12-31') and not (hd.ngay_lap_hop_dong between '2019-01-01' and ' 2019-06-30')
  group by hd.id_khach_hang;
  /*Task 13 Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
  (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).*/
