@@ -85,7 +85,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                 statement.setDouble(2, product.getPriceProduct());
                 statement.setString(3, product.getImageProduct());
                 statement.executeUpdate();
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } finally {
@@ -132,10 +131,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void remove(int id) throws SQLException {
-        boolean rowDeleted;
-        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement("delete from product where id=?;")) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement("delete from product where id=?;")) {
             statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
         }
     }
 
@@ -144,12 +142,12 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public void update(int id, Product product) {
         boolean rowUpdated;
+
         try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement("update product set name = ?,price= ?, image =? where id = ?;")) {
             statement.setString(1, product.getNameProduct());
             statement.setDouble(2, product.getPriceProduct());
             statement.setString(3, product.getImageProduct());
             statement.setInt(4, product.getIdProduct());
-
             rowUpdated = statement.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
