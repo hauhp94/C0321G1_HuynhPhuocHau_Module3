@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Product details</h1>
-<table>
+<table class="table">
     <tr>
         <td>ID: </td>
         <td>${requestScope["product"].getIdProduct()}</td>

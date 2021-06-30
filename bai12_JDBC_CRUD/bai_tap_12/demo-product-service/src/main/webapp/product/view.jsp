@@ -9,10 +9,14 @@
 <html>
 <head>
     <title>View</title>
+    <link rel="stylesheet" type="text/css" href="/assert/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
 </head>
 <body>
+<div class="container">
+
 <h1>Product details</h1>
-<table>
+<table class="table">
     <tr>
         <td>ID: </td>
         <td>${requestScope["product"].getIdProduct()}</td>
@@ -32,8 +36,7 @@
         </td>
     </tr>
 </table>
-<p>
-    <a href="/product">Back to customer list</a>
-</p>
+    <a href="/product" class="btn btn-success">Back to customer list</a>
+</div>
 </body>
 </html>

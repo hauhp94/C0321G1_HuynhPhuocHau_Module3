@@ -9,12 +9,15 @@
 <html>
 <head>
     <title>Create Product</title>
+    <link rel="stylesheet" type="text/css" href="/assert/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
 </head>
 <body>
+<div class="container">
 <h1>Create Product</h1>
 <form action="/product" method="post">
     <input type="hidden" name="action" value="create">
-    <table>
+    <table class="table">
         <tr>
             <td>ID:</td>
             <td><input type="number" name="id"></td>
@@ -32,12 +35,11 @@
             <td><input type="text" name="image"></td>
         </tr>
         <tr>
-            <td colspan="2"><button type="submit">Create</button></td>
+            <td colspan="2"><button type="submit" class="btn btn-success">Create</button></td>
         </tr>
     </table>
 </form>
-<p>
-    <a href="/product">Back to customer list</a>
-</p>
+<a href="/product" class="btn btn-success">Back to customer list</a>
+</div>
 </body>
 </html>
