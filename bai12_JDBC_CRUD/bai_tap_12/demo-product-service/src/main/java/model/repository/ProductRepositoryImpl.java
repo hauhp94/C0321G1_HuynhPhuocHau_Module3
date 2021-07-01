@@ -134,7 +134,11 @@ public class ProductRepositoryImpl implements ProductRepository {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement("delete from product where id=?;")) {
             statement.setInt(1, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
+
     }
 
 
@@ -143,7 +147,9 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void update(int id, Product product) {
         boolean rowUpdated;
 
-        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement("update product set name = ?,price= ?, image =? where id = ?;")) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement
+                     ("update product set name = ?,price= ?, image =? where id = ?;")) {
             statement.setString(1, product.getNameProduct());
             statement.setDouble(2, product.getPriceProduct());
             statement.setString(3, product.getImageProduct());

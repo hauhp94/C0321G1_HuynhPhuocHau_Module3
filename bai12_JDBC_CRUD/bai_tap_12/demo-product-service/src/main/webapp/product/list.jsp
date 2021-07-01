@@ -12,9 +12,28 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/assert/bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
+    <style>
+        body, html {
+            height: 100%;
+        }
 
+        .bg {
+            /* The image used */
+            background-image: url("../assert/image/background2.jpeg");
+
+            /* Full height */
+            height: 100%;
+            /*opacity: 0.65;*/
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
+<div class="bg container-fluid">
 <div class="container">
     <h1 class="text-center">Product List</h1>
     <a class="btn btn-success mb-2" href="/product?action=create" role="button">create</a>
@@ -22,13 +41,13 @@
         <input type="hidden" name="action" value="search">
         <p class="text-center m-2">Tìm sản phẩm theo tên:</p>
         <input type="text" name="name" placeholder="input name product" class="text-info">
-        <button type="submit" class="btn-success">Search</button>
+        <button type="submit" class="btn-success btn">Search</button>
     </form>
     <c:if test="${empty productList}">
         <h3>Product list empty !</h3>
     </c:if>
     <c:if test="${not empty productList}">
-        <table class="table table-striped table-bordered" id="tableProduct">
+        <table class="table table-striped table-bordered " id="tableProduct">
             <thead>
             <tr>
                 <th>ID</th>
@@ -72,7 +91,7 @@
             </div>
             <form action="/product" method="post">
                 <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="id" value="" id="idProductDel">
+                <input type="hidden" name="id" value="${product.getIdProduct()}" id="idProductDel">
                 <div class="modal-body">
                     Ban co muon xoa <input id="nameProductDel">
                 </div>
@@ -83,6 +102,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 <script src="assert/jquery/jquery-3.5.1.min.js"></script>
 <script src="assert/datatables/js/jquery.dataTables.js"></script>

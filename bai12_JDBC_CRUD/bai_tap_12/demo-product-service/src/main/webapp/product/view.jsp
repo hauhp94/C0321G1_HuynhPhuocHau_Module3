@@ -11,8 +11,27 @@
     <title>View</title>
     <link rel="stylesheet" type="text/css" href="/assert/bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url("../assert/image/background2.jpeg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
+<div class="bg container-fluid">
 <div class="container">
 
 <h1>Product details</h1>
@@ -37,6 +56,7 @@
     </tr>
 </table>
     <a href="/product" class="btn btn-success">Back to customer list</a>
+</div>
 </div>
 </body>
 </html>

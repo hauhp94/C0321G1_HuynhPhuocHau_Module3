@@ -90,7 +90,7 @@ id_hop_dong int,
 id_dich_vu_di_kem int,
 so_luong int default 0,
 foreign key (id_hop_dong) references hop_dong(id_hop_dong)on update cascade on delete cascade,
-foreign key (id_dich_vu_di_kem) references dich_vu_di_kem(id_dich_vu_di_kem)on update cascade on delete cascadeproducts
+foreign key (id_dich_vu_di_kem) references dich_vu_di_kem(id_dich_vu_di_kem)on update cascade on delete cascadeproductsproductproduct
 );
 insert into vi_tri(ten_vi_tri)
 values( 'Lễ tân'),

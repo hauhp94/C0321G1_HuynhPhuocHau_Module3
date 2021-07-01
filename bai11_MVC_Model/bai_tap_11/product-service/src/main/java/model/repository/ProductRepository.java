@@ -12,7 +12,9 @@ public interface ProductRepository {
     Product findById(int id);
 
     void remove(int id);
+
     void update(int id, Product product);
+
     Product findByName(String name);
 
 }

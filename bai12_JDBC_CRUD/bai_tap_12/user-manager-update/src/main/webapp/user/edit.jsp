@@ -11,17 +11,19 @@
 <html>
 <head>
     <title>User Management Application</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
 </head>
 <body>
 <center>
     <h1>User Management</h1>
     <h2>
-        <a href="users?action=users">List All Users</a>
+        <a href="users" class="btn btn-success">List All Users</a>
     </h2>
 </center>
 <div align="center">
     <form method="post">
-        <table border="1" cellpadding="5">
+        <table class="table table-striped table-bordered">
             <caption>
                 <h2>
                     Edit User
@@ -56,11 +58,16 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Save"/>
+                    <input type="submit" value="Save" class="btn btn-success"/>
                 </td>
             </tr>
         </table>
     </form>
 </div>
+<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="assert/datatables/js/jquery.dataTables.js"></script>
+<script src="assert/datatables/js/dataTables.bootstrap4.js"></script>
+<script src="assert/jquery/popper.min.js"></script>
+<script src="assert/bootstrap4/js/bootstrap.js"></script>
 </body>
 </html>
