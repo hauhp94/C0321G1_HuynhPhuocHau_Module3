@@ -22,7 +22,7 @@
     </h2>
 </center>
 <div align="center">
-    <form method="post">
+    <form method="post" action="/users">
         <table class="table table-striped table-bordered">
             <caption>
                 <h2>

@@ -13,7 +13,7 @@
     <title>User Management Application</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="assert//css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="assert/font_anwesome/css/all.min.css" />
 
 </head>
 <body>
