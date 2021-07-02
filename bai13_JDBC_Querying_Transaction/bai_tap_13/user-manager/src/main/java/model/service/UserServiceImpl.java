@@ -38,4 +38,19 @@ public class UserServiceImpl implements  UserService {
     public List<User> selectAllUsersUseProcedure() {
         return repository.selectAllUsersUseProcedure();
     }
+
+    @Override
+    public boolean updateUserUseProcedure(User user) throws SQLException {
+        return repository.updateUserUseProcedure(user);
+    }
+
+    @Override
+    public boolean deleteUserUseProcedure(int id) throws SQLException {
+        return repository.deleteUserUseProcedure(id);
+    }
+
+    @Override
+    public void addUserTransaction(User user) throws SQLException {
+        repository.addUserTransaction(user);
+    }
 }

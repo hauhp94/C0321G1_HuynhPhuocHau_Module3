@@ -18,6 +18,8 @@ public interface UserService {
     public List<User> selectAllUsersUseProcedure();
     public boolean updateUserUseProcedure(User user) throws SQLException;
     public boolean deleteUserUseProcedure(int id) throws SQLException;
+    void addUserTransaction(User user) throws SQLException;
+
 
 
 }

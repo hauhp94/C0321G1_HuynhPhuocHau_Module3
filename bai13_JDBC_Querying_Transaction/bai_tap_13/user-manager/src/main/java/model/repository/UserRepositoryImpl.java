@@ -179,6 +179,37 @@ public class UserRepositoryImpl implements UserRepository {
         return rowDeleted;
     }
 
+    @Override
+    public void addUserTransaction(User user) throws SQLException {
+        System.out.println(INSERT_USERS_SQL);
+        // try-with-resource statement will auto close the connection.
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement=null;
+        try {
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            //Ẩn 1 198 để test chức năng transaction.
+            preparedStatement.setString(1, user.getName()+"B");
+            preparedStatement.setString(2, user.getEmail()+"B");
+            preparedStatement.setString(3, user.getCountry()+"B");
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            printSQLException(e);
+            connection.rollback();
+        }finally {
+            preparedStatement.close();
+            connection.close();
+        }
+    }
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

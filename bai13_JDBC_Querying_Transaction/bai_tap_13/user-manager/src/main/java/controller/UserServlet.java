@@ -101,7 +101,9 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-        service.insertUser(newUser);
+//        service.insertUser(newUser);
+        service.addUserTransaction(newUser);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
         dispatcher.forward(request, response);
     }
@@ -124,7 +126,9 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteUser(id);
+//        service.deleteUser(id);
+        service.deleteUserUseProcedure(id);
+
 
 //        List<User> listUser = service.selectAllUsers();
         List<User> listUser = service.selectAllUsersUseProcedure();

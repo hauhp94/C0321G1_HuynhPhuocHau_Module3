@@ -18,7 +18,7 @@ public interface UserRepository {
     public List<User> selectAllUsersUseProcedure();
     public boolean updateUserUseProcedure(User user) throws SQLException;
     public boolean deleteUserUseProcedure(int id) throws SQLException;
-
+    public void addUserTransaction(User user) throws SQLException;
 
 
 }
