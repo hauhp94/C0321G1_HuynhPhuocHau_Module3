@@ -61,6 +61,19 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "permision":
+
+                    addUserPermision(request, response);
+
+                    break;
+                case "test-without-tran":
+
+                    testWithoutTran(request, response);
+                    break;
+                case "test-use-tran":
+
+                    testUseTran(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -68,6 +81,26 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void testUseTran(HttpServletRequest request, HttpServletResponse response) {
+        service.insertUpdateUseTransaction();
+
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        service.insertUpdateWithoutTransaction();
+
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+
+        int[] permision = {1, 2, 4};
+
+        service.addUserTransaction(user, permision);
+
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
@@ -116,8 +149,9 @@ public class UserServlet extends HttpServlet {
 
         User book = new User(id, name, email, country);
         service.updateUser(book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+//        dispatcher.forward(request, response);
+        response.sendRedirect("/users");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)

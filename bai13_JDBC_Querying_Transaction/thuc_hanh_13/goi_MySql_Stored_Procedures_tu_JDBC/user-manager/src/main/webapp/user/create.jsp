@@ -11,8 +11,13 @@
 <html>
 <head>
     <title>User Management Application</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assert/datatables/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="assert/font_anwesome/css/all.min.css" />
 </head>
 <body>
+<div class="container">
+
 <center>
     <h1>User Management</h1>
     <h2>
@@ -21,7 +26,7 @@
 </center>
 <div align="center">
     <form method="post">
-        <table border="1" cellpadding="5">
+        <table class="table table-striped table-bordered">
             <caption>
                 <h2>Add New User</h2>
             </caption>
@@ -50,6 +55,7 @@
             </tr>
         </table>
     </form>
+</div>
 </div>
 </body>
 </html>
