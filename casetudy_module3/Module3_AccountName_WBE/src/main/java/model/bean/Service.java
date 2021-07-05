@@ -1,21 +1,26 @@
 package model.bean;
 
 public abstract class Service {
-    public String id;
+    public int service_id;
     public String service_code;
     public String service_name;
-    public String service_area;
+    public int service_area;
     public double service_cost;
     public int service_max_people;
     public int rent_type_id;
     public String rent_type_name;
+    public int service_type_id;
+    public String service_type_name;
+
+
 
     public Service() {
     }
 
-    public Service(String id, String service_code, String service_name, String service_area, double service_cost,
-                   int service_max_people, int rent_type_id, String rent_type_name) {
-        this.id = id;
+    public Service(int service_id, String service_code, String service_name, int service_area, double service_cost,
+                   int service_max_people, int rent_type_id, String rent_type_name, int service_type_id,
+                   String service_type_name) {
+        this.service_id = service_id;
         this.service_code = service_code;
         this.service_name = service_name;
         this.service_area = service_area;
@@ -23,6 +28,32 @@ public abstract class Service {
         this.service_max_people = service_max_people;
         this.rent_type_id = rent_type_id;
         this.rent_type_name = rent_type_name;
+        this.service_type_id = service_type_id;
+        this.service_type_name = service_type_name;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "service_id=" + service_id +
+                ", service_code='" + service_code + '\'' +
+                ", service_name='" + service_name + '\'' +
+                ", service_area=" + service_area +
+                ", service_cost=" + service_cost +
+                ", service_max_people=" + service_max_people +
+                ", rent_type_id=" + rent_type_id +
+                ", rent_type_name='" + rent_type_name + '\'' +
+                ", service_type_id=" + service_type_id +
+                ", service_type_name='" + service_type_name + '\'' +
+                '}';
+    }
+
+    public int getService_id() {
+        return service_id;
+    }
+
+    public void setService_id(int service_id) {
+        this.service_id = service_id;
     }
 
     public String getService_code() {
@@ -33,14 +64,6 @@ public abstract class Service {
         this.service_code = service_code;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getService_name() {
         return service_name;
     }
@@ -49,11 +72,11 @@ public abstract class Service {
         this.service_name = service_name;
     }
 
-    public String getService_area() {
+    public int getService_area() {
         return service_area;
     }
 
-    public void setService_area(String service_area) {
+    public void setService_area(int service_area) {
         this.service_area = service_area;
     }
 
@@ -89,5 +112,19 @@ public abstract class Service {
         this.rent_type_name = rent_type_name;
     }
 
+    public int getService_type_id() {
+        return service_type_id;
+    }
 
+    public void setService_type_id(int service_type_id) {
+        this.service_type_id = service_type_id;
+    }
+
+    public String getService_type_name() {
+        return service_type_name;
+    }
+
+    public void setService_type_name(String service_type_name) {
+        this.service_type_name = service_type_name;
+    }
 }

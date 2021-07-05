@@ -61,7 +61,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/customer?action=list">Customer list</a>
-                    <a class="dropdown-item" href="../furama/customer_add.jsp">Add Customer</a>
+                    <a class="dropdown-item" href="/customer?action=create">Add Customer</a>
                     <a class="dropdown-item" href="#">Edit Customer</a>
                     <a class="dropdown-item" href="#">Search Customer by id</a>
                     <a class="dropdown-item" href="#">Search Customer by name</a>
@@ -74,7 +74,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Service list</a>
-                    <a class="dropdown-item" href="#">Add Service</a>
+                    <a class="dropdown-item" href="/furama/service_add.jsp">Add Service</a>
                     <a class="dropdown-item" href="#">Edit Service</a>
                     <a class="dropdown-item" href="#">Search Service by id</a>
                     <a class="dropdown-item" href="#">Search Service by name</a>

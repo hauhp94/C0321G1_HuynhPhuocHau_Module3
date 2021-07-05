@@ -83,6 +83,7 @@ standard_room varchar(45),
 description_other_convenience varchar(45),
 pool_area double,
 number_of_floors int,
+free_service varchar(45),
 foreign key (rent_type_id) references rent_type(rent_type_id)on update cascade on delete cascade,
 foreign key (service_type_id) references service_type(service_type_id)on update cascade on delete cascade
 );

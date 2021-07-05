@@ -1,25 +1,27 @@
 package model.bean;
 
+import java.time.LocalDate;
+
 public class Employee {
     private int employee_id;
-    private int employee_name;
-    private int employee_birthday;
-    private int employee_id_card;
-    private int employee_salary;
-    private int employee_phone;
-    private int employee_email;
-    private int employee_address;
+    private String employee_name;
+    private LocalDate employee_birthday;
+    private String employee_id_card;
+    private double employee_salary;
+    private String employee_phone;
+    private String employee_email;
+    private String employee_address;
     private int position_id;
     private int education_degree_id;
     private int division_id;
-    private int username;
+    private String username;
 
     public Employee() {
     }
 
-    public Employee(int employee_id, int employee_name, int employee_birthday, int employee_id_card,
-                    int employee_salary, int employee_phone, int employee_email, int employee_address,
-                    int position_id, int education_degree_id, int division_id, int username) {
+    public Employee(int employee_id, String employee_name, LocalDate employee_birthday, String employee_id_card,
+                    double employee_salary, String employee_phone, String employee_email, String employee_address,
+                    int position_id, int education_degree_id, int division_id, String username) {
         this.employee_id = employee_id;
         this.employee_name = employee_name;
         this.employee_birthday = employee_birthday;
@@ -42,59 +44,59 @@ public class Employee {
         this.employee_id = employee_id;
     }
 
-    public int getEmployee_name() {
+    public String getEmployee_name() {
         return employee_name;
     }
 
-    public void setEmployee_name(int employee_name) {
+    public void setEmployee_name(String employee_name) {
         this.employee_name = employee_name;
     }
 
-    public int getEmployee_birthday() {
+    public LocalDate getEmployee_birthday() {
         return employee_birthday;
     }
 
-    public void setEmployee_birthday(int employee_birthday) {
+    public void setEmployee_birthday(LocalDate employee_birthday) {
         this.employee_birthday = employee_birthday;
     }
 
-    public int getEmployee_id_card() {
+    public String getEmployee_id_card() {
         return employee_id_card;
     }
 
-    public void setEmployee_id_card(int employee_id_card) {
+    public void setEmployee_id_card(String employee_id_card) {
         this.employee_id_card = employee_id_card;
     }
 
-    public int getEmployee_salary() {
+    public double getEmployee_salary() {
         return employee_salary;
     }
 
-    public void setEmployee_salary(int employee_salary) {
+    public void setEmployee_salary(double employee_salary) {
         this.employee_salary = employee_salary;
     }
 
-    public int getEmployee_phone() {
+    public String getEmployee_phone() {
         return employee_phone;
     }
 
-    public void setEmployee_phone(int employee_phone) {
+    public void setEmployee_phone(String employee_phone) {
         this.employee_phone = employee_phone;
     }
 
-    public int getEmployee_email() {
+    public String getEmployee_email() {
         return employee_email;
     }
 
-    public void setEmployee_email(int employee_email) {
+    public void setEmployee_email(String employee_email) {
         this.employee_email = employee_email;
     }
 
-    public int getEmployee_address() {
+    public String getEmployee_address() {
         return employee_address;
     }
 
-    public void setEmployee_address(int employee_address) {
+    public void setEmployee_address(String employee_address) {
         this.employee_address = employee_address;
     }
 
@@ -122,11 +124,11 @@ public class Employee {
         this.division_id = division_id;
     }
 
-    public int getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(int username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -134,17 +136,17 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "employee_id=" + employee_id +
-                ", employee_name=" + employee_name +
+                ", employee_name='" + employee_name + '\'' +
                 ", employee_birthday=" + employee_birthday +
-                ", employee_id_card=" + employee_id_card +
+                ", employee_id_card='" + employee_id_card + '\'' +
                 ", employee_salary=" + employee_salary +
-                ", employee_phone=" + employee_phone +
-                ", employee_email=" + employee_email +
-                ", employee_address=" + employee_address +
+                ", employee_phone='" + employee_phone + '\'' +
+                ", employee_email='" + employee_email + '\'' +
+                ", employee_address='" + employee_address + '\'' +
                 ", position_id=" + position_id +
                 ", education_degree_id=" + education_degree_id +
                 ", division_id=" + division_id +
-                ", username=" + username +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

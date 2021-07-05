@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "HomeServlet",urlPatterns = "")
+@WebServlet(name = "HomeServlet",urlPatterns = {"","/home"})
 public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            response.sendRedirect("furama/home.jsp");
-        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/home.jsp");
+        requestDispatcher.forward(request, response);
+//            response.sendRedirect("/furama/home.jsp");
     }
 }

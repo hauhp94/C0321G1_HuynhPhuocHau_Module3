@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
@@ -31,17 +32,20 @@ public class CustomerServlet extends HttpServlet {
                 createCustomer(request, response);
                 break;
             case "delete":
-//                try {
-//                    deleteProduct(request, response);
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
+                try {
+                    deleteCustomer(request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             case "edit":
                 updateCustomer(request, response);
                 break;
             case "search":
-//                searchProduct(request, response);
+                searchCustomer(request, response);
+                break;
+            case "searchById":
+                searchCustomerById(request, response);
                 break;
             default:
                 showCustomerList(request, response);
@@ -49,8 +53,48 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
+    private void searchCustomerById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("customer_id"));
+        Customer customer = this.service.findById(id);
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+        RequestDispatcher dispatcher;
+        if (customerList.isEmpty()) {
+            dispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
+        } else {
+            request.setAttribute("customerList", customerList);
+            dispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
+        }
+        dispatcher.forward(request, response);
+    }
+
+    private void searchCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("customer_name");
+        List<Customer> customerList = this.service.findByName(name);
+        RequestDispatcher dispatcher;
+        if (customerList.isEmpty()) {
+            dispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
+        } else {
+            request.setAttribute("customerList", customerList);
+            dispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
+        }
+        dispatcher.forward(request, response);
+    }
+
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Customer customer = this.service.findById(id);
+        RequestDispatcher dispatcher;
+        if (customer == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            this.service.remove(id);
+            response.sendRedirect("/customer?action=list");
+        }
+    }
+
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
-//        int id= Integer.parseInt(request.getParameter("customer_id"));
         int id = Integer.parseInt(request.getParameter("customer_id"));
         String name = request.getParameter("customer_name");
         String code = request.getParameter("customer_code");
@@ -69,7 +113,7 @@ public class CustomerServlet extends HttpServlet {
         } else {
             this.service.update(id, customer);
             try {
-                response.sendRedirect("/furama/home.jsp");
+                response.sendRedirect("/customer?action=list");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -114,7 +158,7 @@ public class CustomerServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-//                showCreatePage(request, response);
+                showCreateCustomer(request, response);
                 break;
             case "delete":
 //                showDeleteForm(request, response);
@@ -132,6 +176,10 @@ public class CustomerServlet extends HttpServlet {
                 showCustomerList(request, response);
                 break;
         }
+    }
+
+    private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/furama/customer_add.jsp");
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

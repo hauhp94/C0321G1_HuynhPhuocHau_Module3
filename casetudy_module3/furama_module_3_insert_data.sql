@@ -22,3 +22,5 @@ values ('Sale marketing'),
  values ('villa'),('house'), ('room');
   insert into customer_type(customer_type_name)
  values ('Diamond'),('Platinium'),('Gold'),('Silver'),('Member');
+--  INSERT INTO customer(customer_name, customer_code,customer_type_id,customer_birthday,customer_gender,customer_id_card,customer_phone,customer_email,customer_address) 
+--  VALUE("hau","hk-1231" , 1,"1994-01-01",1, "201602131", "09095656565","hph@gmail.com","Đà Nẵng");

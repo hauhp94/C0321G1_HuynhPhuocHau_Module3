@@ -9,15 +9,19 @@ public class Villa extends Service{
     public Villa() {
     }
 
-    public Villa(String id, String service_code, String service_name, String service_area, double service_cost,
-                 int service_max_people, int rent_type_id, String rent_type_name, String standard_room,
+    public Villa(int service_id, String service_code, String service_name, int service_area,
+                 double service_cost, int service_max_people, int rent_type_id, String rent_type_name,
+                 int service_type_id, String service_type_name, String standard_room,
                  String description_other_convenience, double pool_area, int number_of_floors) {
-        super(id, service_code, service_name, service_area, service_cost, service_max_people, rent_type_id, rent_type_name);
+        super(service_id, service_code, service_name, service_area, service_cost, service_max_people,
+                rent_type_id, rent_type_name, service_type_id, service_type_name);
         this.standard_room = standard_room;
         this.description_other_convenience = description_other_convenience;
         this.pool_area = pool_area;
         this.number_of_floors = number_of_floors;
     }
+
+
 
     public String getStandard_room() {
         return standard_room;
@@ -55,15 +59,19 @@ public class Villa extends Service{
     public String toString() {
         return "Villa{" +
                 "standard_room='" + standard_room + '\'' +
+                ", description_other_convenience='" + description_other_convenience + '\'' +
                 ", pool_area=" + pool_area +
                 ", number_of_floors=" + number_of_floors +
-                ", id='" + id + '\'' +
+                ", service_id=" + service_id +
+                ", service_code='" + service_code + '\'' +
                 ", service_name='" + service_name + '\'' +
-                ", service_area='" + service_area + '\'' +
+                ", service_area=" + service_area +
                 ", service_cost=" + service_cost +
                 ", service_max_people=" + service_max_people +
                 ", rent_type_id=" + rent_type_id +
                 ", rent_type_name='" + rent_type_name + '\'' +
+                ", service_type_id=" + service_type_id +
+                ", service_type_name='" + service_type_name + '\'' +
                 '}';
     }
 }

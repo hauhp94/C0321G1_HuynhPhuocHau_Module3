@@ -139,7 +139,7 @@
                         <tr>
                             <td>Loại khách hàng: </td>
                             <td>
-                                <input type="radio" id="Diamond" name="customer_type" value="1">
+                                <input type="radio" id="Diamond" name="customer_type" value="1" >
                                 <label for="Diamond">Diamond</label><br>
                                 <input type="radio" id="Platinium" name="customer_type" value="2">
                                 <label for="Platinium">Platinium</label><br>
@@ -147,7 +147,7 @@
                                 <label for="Gold">Gold</label><br>
                                 <input type="radio" id="Silver" name="customer_type" value="4">
                                 <label for="Silver">Silver</label><br>
-                                <input type="radio" id="Member" name="customer_type" value="5">
+                                <input type="radio" id="Member" name="customer_type" value="5" checked>
                                 <label for="Member">Member</label><br>
                             </td>
                         </tr>

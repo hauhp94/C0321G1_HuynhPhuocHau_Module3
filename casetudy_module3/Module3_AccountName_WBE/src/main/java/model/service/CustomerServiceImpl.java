@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findByName(String name) {
+    public List<Customer> findByName(String name) {
         return repository.findByName(name);
     }
 }
