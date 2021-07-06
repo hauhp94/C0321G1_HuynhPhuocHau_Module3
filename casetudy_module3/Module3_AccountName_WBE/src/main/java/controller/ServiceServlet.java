@@ -1,19 +1,16 @@
 package controller;
 
-import model.bean.House;
-import model.bean.Room;
 import model.bean.Service;
-import model.bean.Villa;
 import model.service.ServiceService;
 import model.service.ServiceServiceImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(name = "ServiceServlet",urlPatterns = "/service")
 public class ServiceServlet extends HttpServlet {
@@ -51,7 +48,7 @@ public class ServiceServlet extends HttpServlet {
         }
     }
 
-    private void createService(HttpServletRequest request, HttpServletResponse response) {
+    private void createService(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String service_name = request.getParameter("service_name");
         String service_code = request.getParameter("service_code");
         int service_area = Integer.parseInt(request.getParameter("service_area"));
@@ -64,29 +61,11 @@ public class ServiceServlet extends HttpServlet {
         double pool_area = Double.parseDouble(request.getParameter("pool_area"));
         int number_of_floors = Integer.parseInt(request.getParameter("number_of_floors"));
         String free_service = request.getParameter("free_service");
-
-//        switch (service_type_id) {
-//            case 1:
-//                Service villa = new Villa(1, service_code, service_name, service_area, service_cost,
-//                        service_max_people, rent_type_id, null, standard_room,
-//                        description_other_convenience, pool_area, number_of_floors);
-//                serviceService.save(villa);
-//                break;
-//            case 2:
-//                Service house = new House(1, service_code, service_name, service_area, service_cost,
-//                        service_max_people, rent_type_id, null, standard_room,
-//                        description_other_convenience, number_of_floors);
-//                serviceService.save(house);
-//                break;
-//            case 3:
-//                Service room = new Room(1, service_code, service_name, service_area, service_cost,
-//                        service_max_people, rent_type_id, null, free_service);
-//                serviceService.save(room);
-//                break;
-//            default:
-//                System.out.println("lỗi");
-//        }
-//        showServiceList(request, response);
+        Service service = new Service(1,service_code,service_name,service_area,service_cost,
+                service_max_people,rent_type_id,null,service_type_id,null,
+                standard_room,description_other_convenience,pool_area,number_of_floors,free_service);
+        serviceService.save(service);
+        response.sendRedirect("../furama/service_add.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -116,9 +95,20 @@ public class ServiceServlet extends HttpServlet {
 //                searchCustomerById(request, response);
                 break;
             default:
-//                showCustomerList(request, response);
+                showServiceList(request, response);
                 break;
         }
+    }
+
+    private void showServiceList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setAttribute("serviceList", serviceService.findAll());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/service_list.jsp");
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void showCreateService(HttpServletRequest request, HttpServletResponse response) throws IOException {

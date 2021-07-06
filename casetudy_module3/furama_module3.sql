@@ -130,8 +130,9 @@ join customer_type on customer.customer_type_id=customer_type.customer_type_id;
     END$$
 
 DELIMITER ;
-DELIMITER $$
 
+-- procedue update customer
+DELIMITER $$
 CREATE PROCEDURE update_customer(
 p_customer_id int,
 p_customer_name varchar(45),
@@ -160,7 +161,53 @@ customer_email=p_customer_email,
 customer_address =p_customer_address
 where customer_id=p_customer_id;
     END$$
-
 DELIMITER ;
+-- procedure insert Service
+DELIMITER $$
+CREATE PROCEDURE insert_service(
+p_service_code varchar(45),
+p_service_name varchar(45),
+p_service_area int,
+p_service_cost double,
+p_service_max_people int,
+p_rent_type_id int,
+p_service_type_id int,
+p_standard_room varchar(45),
+p_description_other_convenience varchar(45),
+p_pool_area double,
+p_number_of_floors int,
+p_free_service varchar(45)
+ )
+BEGIN
+insert into service (
+service_code ,
+service_name ,
+service_area ,
+service_cost ,
+service_max_people ,
+rent_type_id ,
+service_type_id ,
+standard_room ,
+description_other_convenience ,
+pool_area ,
+number_of_floors ,
+free_service
+)
+values(
+p_service_code,
+p_service_name,
+p_service_area,
+p_service_cost,
+p_service_max_people,
+p_rent_type_id,
+p_service_type_id,
+p_standard_room,
+p_description_other_convenience,
+p_pool_area,
+p_number_of_floors,
+p_free_service);
+    END$$
+DELIMITER ;
+
 
 

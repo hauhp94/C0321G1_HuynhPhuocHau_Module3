@@ -1,6 +1,6 @@
 package model.bean;
 
-public abstract class Service {
+public class Service {
     public int service_id;
     public String service_code;
     public String service_name;
@@ -11,15 +11,19 @@ public abstract class Service {
     public String rent_type_name;
     public int service_type_id;
     public String service_type_name;
-
-
+    public String standard_room;
+    public String description_other_convenience;
+    public double pool_area;
+    public int number_of_floors;
+    public String free_service;
 
     public Service() {
     }
 
     public Service(int service_id, String service_code, String service_name, int service_area, double service_cost,
                    int service_max_people, int rent_type_id, String rent_type_name, int service_type_id,
-                   String service_type_name) {
+                   String service_type_name, String standard_room, String description_other_convenience,
+                   double pool_area, int number_of_floors, String free_service) {
         this.service_id = service_id;
         this.service_code = service_code;
         this.service_name = service_name;
@@ -30,22 +34,11 @@ public abstract class Service {
         this.rent_type_name = rent_type_name;
         this.service_type_id = service_type_id;
         this.service_type_name = service_type_name;
-    }
-
-    @Override
-    public String toString() {
-        return "Service{" +
-                "service_id=" + service_id +
-                ", service_code='" + service_code + '\'' +
-                ", service_name='" + service_name + '\'' +
-                ", service_area=" + service_area +
-                ", service_cost=" + service_cost +
-                ", service_max_people=" + service_max_people +
-                ", rent_type_id=" + rent_type_id +
-                ", rent_type_name='" + rent_type_name + '\'' +
-                ", service_type_id=" + service_type_id +
-                ", service_type_name='" + service_type_name + '\'' +
-                '}';
+        this.standard_room = standard_room;
+        this.description_other_convenience = description_other_convenience;
+        this.pool_area = pool_area;
+        this.number_of_floors = number_of_floors;
+        this.free_service = free_service;
     }
 
     public int getService_id() {
@@ -126,5 +119,45 @@ public abstract class Service {
 
     public void setService_type_name(String service_type_name) {
         this.service_type_name = service_type_name;
+    }
+
+    public String getStandard_room() {
+        return standard_room;
+    }
+
+    public void setStandard_room(String standard_room) {
+        this.standard_room = standard_room;
+    }
+
+    public String getDescription_other_convenience() {
+        return description_other_convenience;
+    }
+
+    public void setDescription_other_convenience(String description_other_convenience) {
+        this.description_other_convenience = description_other_convenience;
+    }
+
+    public double getPool_area() {
+        return pool_area;
+    }
+
+    public void setPool_area(double pool_area) {
+        this.pool_area = pool_area;
+    }
+
+    public int getNumber_of_floors() {
+        return number_of_floors;
+    }
+
+    public void setNumber_of_floors(int number_of_floors) {
+        this.number_of_floors = number_of_floors;
+    }
+
+    public String getFree_service() {
+        return free_service;
+    }
+
+    public void setFree_service(String free_service) {
+        this.free_service = free_service;
     }
 }
