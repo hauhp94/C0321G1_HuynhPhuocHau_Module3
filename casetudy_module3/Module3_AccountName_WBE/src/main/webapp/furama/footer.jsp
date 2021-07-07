@@ -9,14 +9,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Furama Resort</title>
-    <link rel="stylesheet" type="text/css" href="../assert/bootstrap4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../assert/datatables/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>
+<%--    <title>Furama Resort</title>--%>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/bootstrap4/css/bootstrap.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/datatables/css/dataTables.bootstrap4.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>--%>
 </head>
 <body>
 <!-- Footer -->
-<footer class="page-footer font-small cyan darken-3 text-center">
+<footer class="page-footer font-small cyan darken-3 text-center bg-dark mt-2 ">
 
     <!-- Footer Elements -->
     <div class="container ">
@@ -70,10 +70,10 @@
 
 </footer>
 <!-- Footer -->
-<script src="../assert/jquery/jquery-3.5.1.min.js"></script>
-<script src="../assert/datatables/js/jquery.dataTables.js"></script>
-<script src="../assert/datatables/js/dataTables.bootstrap4.js"></script>
-<script src="../assert/jquery/popper.min.js"></script>
-<script src="../assert/bootstrap4/js/bootstrap.js"></script>
+<%--<script src="../assert/jquery/jquery-3.5.1.min.js"></script>--%>
+<%--<script src="../assert/datatables/js/jquery.dataTables.js"></script>--%>
+<%--<script src="../assert/datatables/js/dataTables.bootstrap4.js"></script>--%>
+<%--<script src="../assert/jquery/popper.min.js"></script>--%>
+<%--<script src="../assert/bootstrap4/js/bootstrap.js"></script>--%>
 </body>
 </html>

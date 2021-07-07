@@ -19,4 +19,7 @@ public interface CustomerRepository {
 
     List<Customer> findByName(String name);
 
+    List<Customer> findAllAndService();
+
+
 }

@@ -1,5 +1,8 @@
 package model.bean;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Contract {
     private int contract_id;
     private String contract_start_date;

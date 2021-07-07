@@ -15,6 +15,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<div class="row container-fluid">
 <jsp:include page="side_bar.jsp"></jsp:include>
         <%--    noi dung --%>
         <div class=" h-100 col-lg-10">
@@ -94,6 +95,7 @@
                     </table>
                 </div>
             </form>
+</div>
 </div>
 <!-- Footer -->
 <jsp:include page="footer.jsp"></jsp:include>

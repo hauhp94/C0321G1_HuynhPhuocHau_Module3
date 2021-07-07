@@ -16,6 +16,7 @@
 </head>
 <body>
 <!--navbar-->
+<%--<div class="container-fluid">--%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
@@ -48,8 +49,8 @@
                    aria-haspopup="true" aria-expanded="false">
                     Employee</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Employee list</a>
-                    <a class="dropdown-item" href="#">Add Employee</a>
+                    <a class="dropdown-item" href="/employee?action=list">Employee list</a>
+                    <a class="dropdown-item" href="/employee?action=create">Add Employee</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -60,6 +61,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/customer?action=list">Customer list</a>
                     <a class="dropdown-item" href="/customer?action=create">Add Customer</a>
+                    <a class="dropdown-item" href="/customer?action=CustomerService">Customer Use Service</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -78,21 +80,27 @@
                     Contract
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Contract list</a>
-                    <a class="dropdown-item" href="#">Add Contract</a>
-                    <a class="dropdown-item" href="#">Edit Contract</a>
-                    <a class="dropdown-item" href="#">Search Contract by id</a>
+                    <a class="dropdown-item" href="/contract?action=list">Contract list</a>
+                    <a class="dropdown-item" href="/contract?action=create">Add Contract</a>
+                    <a class="dropdown-item" href="/contractDetail?action=create">Add Contract Detail</a>
                 </div>
             </li>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="/customer" method="post">
+                <input type="hidden" name="action" value="search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search"
+                       name="customer_name">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
             </form>
+<%--            <form action="/customer" method="post" class="form-inline my-2 my-lg-0">--%>
+<%--                <input type="hidden" name="action" value="search">--%>
+<%--                <input type="search" name="customer_name" placeholder="Name customer">--%>
+<%--                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search by name</button>--%>
+<%--            </form>--%>
         </ul>
 
     </div>
 </nav>
-<div class="container-fluid">
+<%--</div>--%>
     <%--</nav>--%>
 <script src="../assert/jquery/jquery-3.5.1.min.js"></script>
 <script src="../assert/datatables/js/jquery.dataTables.js"></script>

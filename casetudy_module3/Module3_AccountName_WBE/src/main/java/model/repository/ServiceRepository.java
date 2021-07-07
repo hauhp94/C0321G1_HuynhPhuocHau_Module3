@@ -17,5 +17,5 @@ public interface ServiceRepository {
 
     Service findById(int id);
 
-    Service findByName(String name);
+    List<Service> findByName(String name);
 }

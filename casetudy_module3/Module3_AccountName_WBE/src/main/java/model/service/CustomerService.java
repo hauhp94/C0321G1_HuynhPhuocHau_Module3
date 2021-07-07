@@ -18,4 +18,6 @@ public interface CustomerService {
     Customer findById(int id);
 
     List<Customer> findByName(String name);
+
+    List<Customer> findAllAndService();
 }

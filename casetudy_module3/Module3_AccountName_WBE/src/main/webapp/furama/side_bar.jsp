@@ -15,28 +15,23 @@
     <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>
 </head>
 <body>
-    <!-- A vertical navbar -->
-    <div class="row">
-        <div class=" col-lg-2 bg-dark " style="height: auto">
-            <ul>
-                <div class="justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
-                    </li>
-                </div>
-            </ul>
-        </div>
+<!-- A vertical navbar -->
 
-<script src="../assert/jquery/jquery-3.5.1.min.js"></script>
-<script src="../assert/datatables/js/jquery.dataTables.js"></script>
-<script src="../assert/datatables/js/dataTables.bootstrap4.js"></script>
-<script src="../assert/jquery/popper.min.js"></script>
-<script src="../assert/bootstrap4/js/bootstrap.js"></script>
+<div class="col-lg-2 bg-light list-group " style="height: auto">
+    <a href="/employee?action=list" class="list-group-item list-group-item-action list-group-item-primary">Employee
+        List</a>
+    <a href="/customer?action=list" class="list-group-item list-group-item-action list-group-item-success">Customer
+        List</a>
+    <a href="/service?action=list" class="list-group-item list-group-item-action list-group-item-secondary">Service
+        List</a>
+    <a href="/contract?action=list" class="list-group-item list-group-item-action list-group-item-secondary">Contract
+        List</a>
+</div>
+
+<%--    <script src="../assert/jquery/jquery-3.5.1.min.js"></script>--%>
+<%--    <script src="../assert/datatables/js/jquery.dataTables.js"></script>--%>
+<%--    <script src="../assert/datatables/js/dataTables.bootstrap4.js"></script>--%>
+<%--    <script src="../assert/jquery/popper.min.js"></script>--%>
+<%--    <script src="../assert/bootstrap4/js/bootstrap.js"></script>--%>
 </body>
 </html>

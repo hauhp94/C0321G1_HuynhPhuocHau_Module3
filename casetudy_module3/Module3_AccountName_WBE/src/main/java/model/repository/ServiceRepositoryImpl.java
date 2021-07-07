@@ -111,7 +111,7 @@ public class ServiceRepositoryImpl implements ServiceRepository{
     }
 
     @Override
-    public Service findByName(String name) {
+    public List<Service> findByName(String name) {
         return null;
     }
 }

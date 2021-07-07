@@ -12,16 +12,21 @@ public class Employee {
     private String employee_email;
     private String employee_address;
     private int position_id;
+    private String position_name;
     private int education_degree_id;
+    private String education_degree_name;
     private int division_id;
+    private String division_name;
     private String username;
 
     public Employee() {
     }
 
-    public Employee(int employee_id, String employee_name, LocalDate employee_birthday, String employee_id_card,
-                    double employee_salary, String employee_phone, String employee_email, String employee_address,
-                    int position_id, int education_degree_id, int division_id, String username) {
+    public Employee(int employee_id, String employee_name, LocalDate employee_birthday,
+                    String employee_id_card, double employee_salary, String employee_phone,
+                    String employee_email, String employee_address, int position_id, String position_name,
+                    int education_degree_id, String education_degree_name, int division_id,
+                    String division_name, String username) {
         this.employee_id = employee_id;
         this.employee_name = employee_name;
         this.employee_birthday = employee_birthday;
@@ -31,9 +36,36 @@ public class Employee {
         this.employee_email = employee_email;
         this.employee_address = employee_address;
         this.position_id = position_id;
+        this.position_name = position_name;
         this.education_degree_id = education_degree_id;
+        this.education_degree_name = education_degree_name;
         this.division_id = division_id;
+        this.division_name = division_name;
         this.username = username;
+    }
+
+    public String getPosition_name() {
+        return position_name;
+    }
+
+    public void setPosition_name(String position_name) {
+        this.position_name = position_name;
+    }
+
+    public String getEducation_degree_name() {
+        return education_degree_name;
+    }
+
+    public void setEducation_degree_name(String education_degree_name) {
+        this.education_degree_name = education_degree_name;
+    }
+
+    public String getDivision_name() {
+        return division_name;
+    }
+
+    public void setDivision_name(String division_name) {
+        this.division_name = division_name;
     }
 
     public int getEmployee_id() {

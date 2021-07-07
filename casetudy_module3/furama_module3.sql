@@ -108,7 +108,7 @@ attach_service_unit int,
 attach_service_status varchar(45)
 );
 create table contract_detail(
-contract_detail_id int,
+contract_detail_id int primary key auto_increment,
 contract_id int,
 attach_service_id int,
 quantity int,
@@ -208,6 +208,151 @@ p_number_of_floors,
 p_free_service);
     END$$
 DELIMITER ;
+-- select SERVICE
+DELIMITER $$
+CREATE PROCEDURE select_service()
+BEGIN
+select service_id, service_code, service_name, service_area, service_cost, service_max_people, service.rent_type_id, service.service_type_id, standard_room, description_other_convenience, pool_area, number_of_floors, free_service, service_type_name, rent_type_name
+from service 
+join service_type on service.service_type_id=service_type.service_type_id
+join rent_type on service.rent_type_id=rent_type.rent_type_id;
+END$$
+DELIMITER ;
+call select_service;
+procedure insert Service
+DELIMITER $$
+CREATE PROCEDURE insert_employee(
+p_employee_name varchar(45),
+p_employee_birthday date,
+p_employee_id_card varchar(45),
+p_employee_salary double,
+p_employee_phone varchar(45),
+p_employee_email varchar(45),
+p_employee_address varchar(45),
+p_position_id int,
+p_education_degree_id int,
+p_division_id int,
+p_username varchar(255)
+ )
+BEGIN
+insert into employee (
+ employee_name,
+ employee_birthday,
+ employee_id_card,
+ employee_salary, 
+ employee_phone,
+ employee_email,
+ employee_address,
+ position_id,
+ education_degree_id,
+ division_id, 
+ username
+)
+values(
+ p_employee_name,
+ p_employee_birthday,
+ p_employee_id_card,
+ p_employee_salary, 
+ p_employee_phone,
+ p_employee_email,
+ p_employee_address,
+ p_position_id,
+ p_education_degree_id,
+ p_division_id, 
+ p_username);
+    END$$
+DELIMITER ;
+-- select_all_employee procedure
+DELIMITER $$
 
+CREATE PROCEDURE select_all_employee()
 
+BEGIN
+
+SELECT *
+    
+FROM employee
+
+join position on employee.position_id=position.position_id
+join education_degree on employee.education_degree_id= education_degree.education_Degree_id
+join division on employee.division_id=division.division_id;
+
+    END$$
+
+DELIMITER ;
+
+-- procedue update employee
+DELIMITER $$
+CREATE PROCEDURE update_employee(
+p_employee_id int,
+p_employee_name varchar(45),
+p_employee_birthday date,
+p_employee_id_card varchar(45),
+p_employee_salary double,
+p_employee_phone varchar(45),
+p_employee_email varchar(45),
+p_employee_address varchar(45),
+p_position_id int,
+p_education_degree_id int,
+p_division_id int,
+p_username varchar(255) )
+
+BEGIN
+
+update employee
+    
+set 
+employee_name=p_employee_name,
+employee_birthday=p_employee_birthday ,
+employee_id_card=p_employee_id_card ,
+employee_salary=p_employee_salary ,
+employee_phone=p_employee_phone ,
+employee_email=p_employee_email ,
+employee_address=p_employee_address ,
+position_id=p_position_id ,
+education_degree_id=p_education_degree_id ,
+division_id=p_division_id ,
+username=p_username
+where employee_id=p_employee_id;
+    END$$
+DELIMITER ;
+
+-- select contract full
+create view contract_full as
+select contract_id, contract_start_date, contract_end_date, contract_deposit,
+ contract_total_money, contract.service_id, contract.employee_id, employee_name,
+contract.customer_id, customer_name,  service_name
+from contract
+join customer on contract.customer_id=customer.customer_id
+join employee on contract.employee_id=employee.employee_id
+join service on contract.service_id=service.service_id;
+-- GET ALL CUSTOMER WITH SERVICE
+DELIMITER $$
+
+CREATE PROCEDURE get_all_customer_with_service()
+
+BEGIN
+
+SELECT *, customer_type_name
+    
+FROM customer
+
+right join contract on customer.customer_id=contract.customer_id;
+
+    END$$
+
+DELIMITER ;
+create view full_customer_service as
+SELECT contract.customer_id, customer_name, customer_code, customer.customer_type_id, customer_birthday, customer_gender, customer_id_card, 
+customer_phone, customer_email, customer_address, contract.contract_id, contract_start_date, contract_end_date, contract_deposit,
+ contract_total_money, service.service_id, service_code, service_name, service_area, service_cost, 
+ service_max_people, rent_type_id, service_type_id, standard_room, description_other_convenience, pool_area, number_of_floors,
+ free_service, contract_detail_id, quantity, attach_service.attach_service_id, attach_service_name, attach_service_cost,
+ attach_service_unit, attach_service_status,customer_type_name
+FROM customer
+right join contract on customer.customer_id=contract.customer_id
+left join service on contract.service_id=service.service_id
+left join contract_detail on contract.contract_id=contract_detail.contract_id
+left join attach_service on contract_detail.attach_service_id=attach_service.attach_service_id
+left join customer_type on customer.customer_type_id=customer_type.customer_type_id;
 

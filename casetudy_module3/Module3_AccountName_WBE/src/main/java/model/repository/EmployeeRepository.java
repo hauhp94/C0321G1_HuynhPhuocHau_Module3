@@ -16,5 +16,5 @@ public interface EmployeeRepository {
 
     Employee findById(int id);
 
-    Employee findByName(String name);
+    List<Employee> findByName(String name);
 }

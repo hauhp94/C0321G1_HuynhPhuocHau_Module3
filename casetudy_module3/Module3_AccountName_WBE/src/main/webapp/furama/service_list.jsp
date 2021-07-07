@@ -16,16 +16,17 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<div class="row container-fluid">
 <jsp:include page="side_bar.jsp"></jsp:include>
         <%--    noi dung --%>
-        <div class=" h-100 col-lg-10">
+        <div class="col-lg-10">
             <%--        <c:if test=""--%>
             <c:if test="${empty serviceList}">
                 <h3>Service list empty !</h3>
             </c:if>
             <c:if test="${not empty serviceList}">
-                <table class="table table-striped table-bordered align-content-center" id="tableCustomer">
-                    <thead>
+                <table class="table table-striped table-bordered align-content-center" id="tableService">
+                    <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>Code</th>
@@ -65,7 +66,7 @@
             </c:if>
 </div>
 <!-- Footer -->
-
+</div>
 <jsp:include page="footer.jsp"></jsp:include>
 
 <!-- Footer -->
@@ -74,5 +75,14 @@
 <%--<script src="../assert/datatables/js/dataTables.bootstrap4.js"></script>--%>
 <%--<script src="../assert/jquery/popper.min.js"></script>--%>
 <%--<script src="../assert/bootstrap4/js/bootstrap.js"></script>--%>
+<script>
+    $(document).ready(function () {
+        $('#tableService').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        })
+    })
+</script>
 </body>
 </html>

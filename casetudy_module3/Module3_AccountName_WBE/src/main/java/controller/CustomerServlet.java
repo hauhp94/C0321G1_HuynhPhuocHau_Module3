@@ -57,7 +57,9 @@ public class CustomerServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("customer_id"));
         Customer customer = this.service.findById(id);
         List<Customer> customerList = new ArrayList<>();
-        customerList.add(customer);
+        if(customer!=null) {
+            customerList.add(customer);
+        }
         RequestDispatcher dispatcher;
         if (customerList.isEmpty()) {
             dispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
@@ -160,23 +162,40 @@ public class CustomerServlet extends HttpServlet {
             case "create":
                 showCreateCustomer(request, response);
                 break;
-            case "delete":
-//                showDeleteForm(request, response);
-                break;
             case "edit":
                 showEditForm(request, response);
                 break;
-            case "view":
-//                viewProduct(request, response);
-                break;
             case "list":
                 showCustomerList(request, response);
+                break;
+            case "CustomerService":
+                showCustomerListWithService(request, response);
                 break;
             default:
                 showCustomerList(request, response);
                 break;
         }
     }
+
+    private void showCustomerListWithService(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("customerList", service.findAllAndService());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/customer_list_service.jsp");
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    private void showCustomerListWithService(HttpServletRequest request, HttpServletResponse response) {
+//        request.setAttribute("customerList", service.findAllAndService());
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
+//        try {
+//            requestDispatcher.forward(request, response);
+//        } catch (ServletException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("/furama/customer_add.jsp");

@@ -20,6 +20,73 @@ public class Customer {
     private String customer_email;
     private String customer_address;
 
+    private int contractId;
+    private int serviceId;
+    private int contractDetailId;
+    private int quantity;
+    private String attach_service_name;
+
+    public Customer(int customer_id, String customer_code, int customer_type_id, String customer_type_name,
+                    String customer_name, LocalDate customer_birthday, int customer_gender, String customer_id_card,
+                    String customer_phone, String customer_email, String customer_address, int contractId,
+                    int serviceId, int contractDetailId, int quantity, String attach_service_name) {
+        this.customer_id = customer_id;
+        this.customer_code = customer_code;
+        this.customer_type_id = customer_type_id;
+        this.customer_type_name = customer_type_name;
+        this.customer_name = customer_name;
+        this.customer_birthday = customer_birthday;
+        this.customer_gender = customer_gender;
+        this.customer_id_card = customer_id_card;
+        this.customer_phone = customer_phone;
+        this.customer_email = customer_email;
+        this.customer_address = customer_address;
+        this.contractId = contractId;
+        this.serviceId = serviceId;
+        this.contractDetailId = contractDetailId;
+        this.quantity = quantity;
+        this.attach_service_name = attach_service_name;
+    }
+
+    public String getAttach_service_name() {
+        return attach_service_name;
+    }
+
+    public void setAttach_service_name(String attach_service_name) {
+        this.attach_service_name = attach_service_name;
+    }
+
+    public int getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
+    }
+
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public int getContractDetailId() {
+        return contractDetailId;
+    }
+
+    public void setContractDetailId(int contractDetailId) {
+        this.contractDetailId = contractDetailId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Customer() {
     }

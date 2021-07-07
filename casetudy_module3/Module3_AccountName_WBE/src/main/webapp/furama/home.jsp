@@ -16,6 +16,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<div class="row container-fluid">
 <jsp:include page="side_bar.jsp"></jsp:include>
 <%--    noi dung --%>
     <div class=" h-100 col-lg-10">
@@ -31,19 +32,19 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../assert/image/furama.jpg" alt="Los Angeles" width="1024" height="575">
+                    <img src="../assert/image/furama2.jpg" alt="Los Angeles" width="100%" height="700">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assert/image/furama2.jpg" alt="Chicago" width="1024" height="575">
+                    <img src="../assert/image/furama.jpg" alt="Chicago" width="1200" height="797">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assert/image/furama3.jpg" alt="New York" width="1024" height="575">
+                    <img src="../assert/image/furama3.jpg" alt="New York" width="848" height="477">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assert/image/furama4.jpg" alt="New York" width="1024" height="575">
+                    <img src="../assert/image/furama4.jpg" alt="New York" width="800" height="533">
                 </div>
                 <div class="carousel-item">
-                    <img src="../assert/image/furama5.jpg" alt="New York" width="1024" height="575">
+                    <img src="../assert/image/furama5.jpg" alt="New York" width="800" height="450">
                 </div>
                 <div class="carousel-item">
                     <img src="../assert/image/furama6.jpg" alt="New York" width="1024" height="575">
@@ -60,7 +61,6 @@
 
         </div>
     </div>
-</div>
 </div>
 <!-- Footer -->
 <jsp:include page="footer.jsp"></jsp:include>
