@@ -6,6 +6,7 @@ import model.repository.EmployeeRepository;
 import model.repository.EmployeeRepositoryImpl;
 import model.service.EmployeeService;
 import model.service.EmployeeServiceImpl;
+import model.service.common.Validate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "EmployeeServlet", urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -59,7 +61,7 @@ public class EmployeeServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("employee_id"));
         Employee employee = this.employeeService.findById(id);
         List<Employee> employeeList = new ArrayList<>();
-        if(employee!=null){
+        if (employee != null) {
             employeeList.add(employee);
         }
         RequestDispatcher dispatcher;
@@ -127,7 +129,7 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-    private void createEmployee(HttpServletRequest request, HttpServletResponse response) {
+    private void createEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("employee_name");
         LocalDate birthday = LocalDate.parse(request.getParameter("employee_birthday"));
         String id_card = request.getParameter("employee_id_card");
@@ -141,11 +143,16 @@ public class EmployeeServlet extends HttpServlet {
         String username = request.getParameter("username");
         Employee employee = new Employee(1, name, birthday, id_card, salary, phone, email, address, position_id,
                 null, education_degree_id, null, division_id, null, username);
-        employeeService.save(employee);
-        try {
-            response.sendRedirect("/employee?action=create");
-        } catch (IOException e) {
-            e.printStackTrace();
+        Map<String, String> mapMessage = employeeService.save(employee);
+        if (mapMessage.isEmpty()) {
+            showEmployeeList(request, response);
+        } else {
+            request.setAttribute("messEmployee_phone", mapMessage.get("phone"));
+            request.setAttribute("messEmployee_id_card", mapMessage.get("idCard"));
+            request.setAttribute("messEmployee_salary", mapMessage.get("salary"));
+            request.setAttribute("messEmployee_email", mapMessage.get("email"));
+            request.setAttribute("employee", employee);
+            showCreateEmployee(request, response);
         }
     }
 
@@ -186,8 +193,9 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-    private void showCreateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/furama/employee_add.jsp");
-
+    private void showCreateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        response.sendRedirect("/furama/employee_add.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/employee_add.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

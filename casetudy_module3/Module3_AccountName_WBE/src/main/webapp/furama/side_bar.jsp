@@ -10,9 +10,9 @@
 <html>
 <head>
     <title>Furama Resort</title>
-    <link rel="stylesheet" type="text/css" href="../assert/bootstrap4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../assert/datatables/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/bootstrap4/css/bootstrap.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/datatables/css/dataTables.bootstrap4.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>--%>
 </head>
 <body>
 <!-- A vertical navbar -->

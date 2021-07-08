@@ -9,10 +9,8 @@
 <html>
 <head>
     <title>Add Customer</title>
-    <%--    <link rel="stylesheet" type="text/css" href="../assert/bootstrap4/css/bootstrap.css">--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../assert/datatables/css/dataTables.bootstrap4.css">--%>
-    <%--    <link rel="stylesheet" type="text/css" href="../assert/font_anwesome/css/all.min.css"/>--%>
 </head>
+<body>
 <div>
     <jsp:include page="header.jsp"></jsp:include>
     <div class="row container-fluid">
@@ -26,55 +24,76 @@
                     <table class="table table-striped border-dark">
                         <tr>
                             <td>Tên khách hàng:</td>
-                            <td><input type="text" name="customer_name"></td>
+                            <td><input type="text" name="customer_name" value="${customer.getCustomer_name()}" ></td>
+
                         </tr>
                         <tr>
                             <td>Loại khách hàng:</td>
                             <td>
-                                <input type="radio" id="Diamond" name="customer_type" value="1" checked>
+                                <input type="radio" id="Diamond" name="customer_type" value="1" checked ${customer.getCustomer_type_id() == 1 ? 'checked': ''}>
                                 <label for="Diamond">Diamond</label><br>
-                                <input type="radio" id="Platinium" name="customer_type" value="2">
+                                <input type="radio" id="Platinium" name="customer_type" value="2" ${customer.getCustomer_type_id() == 2 ? 'checked': ''}>
                                 <label for="Platinium">Platinium</label><br>
-                                <input type="radio" id="Gold" name="customer_type" value="3">
+                                <input type="radio" id="Gold" name="customer_type" value="3" ${customer.getCustomer_type_id() == 3 ? 'checked': ''}>
                                 <label for="Gold">Gold</label><br>
-                                <input type="radio" id="Silver" name="customer_type" value="4">
+                                <input type="radio" id="Silver" name="customer_type" value="4" ${customer.getCustomer_type_id() == 4 ? 'checked': ''}>
                                 <label for="Silver">Silver</label><br>
-                                <input type="radio" id="Member" name="customer_type" value="5">
+                                <input type="radio" id="Member" name="customer_type" value="5" ${customer.getCustomer_type_id() == 5 ? 'checked': ''}>
                                 <label for="Member">Member</label><br>
                             </td>
                         </tr>
                         <tr>
                             <td>Mã khách hàng:</td>
-                            <td><input type="text" name="customer_code"></td>
+                            <td>
+                                <input type="text" name="customer_code" value="${customer.getCustomer_code()}">
+                                <c:if test="${messCustomer_code != null}">
+                                    <small class="form-text text-danger">${messCustomer_code}</small>
+                                </c:if>
+                            </td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td><input type="date" name="customer_birthday"></td>
+                            <td><input type="date" name="customer_birthday" value="${customer.getCustomer_birthday()}"></td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
                             <td>
-                                <input type="radio" id="nam" name="customer_gender" value="1" checked>
+                                <input type="radio" id="nam" name="customer_gender" value="1" checked ${customer.getCustomer_gender() == 1 ? 'checked': ''}>
                                 <label for="nam">Nam</label><br>
-                                <input type="radio" id="nu" name="customer_gender" value="0">
+                                <input type="radio" id="nu" name="customer_gender" value="0" ${customer.getCustomer_gender() == 0 ? 'checked': ''}>
                                 <label for="nu">Nữ</label><br>
                             </td>
                         </tr>
                         <tr>
                             <td>Số CMND:</td>
-                            <td><input type="text" name="customer_id_card"></td>
+                            <td>
+                                <input type="text" name="customer_id_card" value="${customer.getCustomer_id_card()}">
+                                <c:if test="${messCustomer_id_card != null}">
+                                    <small class="form-text text-danger">${messCustomer_id_card}</small>
+                                </c:if>
+                            </td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input type="text" name="customer_phone"></td>
+                            <td>
+                                <input type="text" name="customer_phone" value="${customer.getCustomer_phone()}">
+                                <c:if test="${messCustomer_phone != null}">
+                                    <small class="form-text text-danger">${messCustomer_phone}</small>
+                                </c:if>
+                            </td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input type="text" name="customer_email"></td>
+                            <td>
+                                <input type="text" name="customer_email" value="${customer.getCustomer_email()}">
+                                <c:if test="${messCustomer_email != null}">
+                                    <small class="form-text text-danger">${messCustomer_email}</small>
+                                </c:if>
+                            </td>
                         </tr>
                         <tr>
                             <td>Địa chỉ:</td>
-                            <td><input type="text" name="customer_address"></td>
+                            <td><input type="text" name="customer_address" value="${customer.getCustomer_address()}"></td>
                         </tr>
                         <tr>
                             <td colspan="2">

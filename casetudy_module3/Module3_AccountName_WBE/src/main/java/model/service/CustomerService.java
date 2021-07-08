@@ -5,11 +5,12 @@ import model.bean.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public interface CustomerService {
     List<Customer> findAll();
 
-    void save(Customer customer);
+    Map<String, String> save(Customer customer);
 
     void remove(int id) throws SQLException;
 
@@ -20,4 +21,5 @@ public interface CustomerService {
     List<Customer> findByName(String name);
 
     List<Customer> findAllAndService();
+
 }

@@ -3,6 +3,7 @@ package controller;
 import model.bean.Customer;
 import model.service.CustomerService;
 import model.service.CustomerServiceImpl;
+import model.service.common.Validate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -133,7 +135,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
 
-    private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("customer_name");
         String code = request.getParameter("customer_code");
         int type_id = Integer.parseInt(request.getParameter("customer_type"));
@@ -145,11 +147,16 @@ public class CustomerServlet extends HttpServlet {
         String address = request.getParameter("customer_address");
         Customer customer = new Customer(1, code, type_id, null, name, birthday,
                 gender, id_card, phone, email, address);
-        service.save(customer);
-        try {
-            response.sendRedirect("../furama/customer_add.jsp");
-        } catch (IOException e) {
-            e.printStackTrace();
+        Map<String, String> mapMessage  = service.save(customer);
+        if (mapMessage.isEmpty()){
+            showCustomerList(request, response);
+        }else {
+            request.setAttribute("messCustomer_code", mapMessage.get("code"));
+            request.setAttribute("messCustomer_id_card", mapMessage.get("idCard"));
+            request.setAttribute("messCustomer_phone", mapMessage.get("phoneNumber"));
+            request.setAttribute("messCustomer_email", mapMessage.get("email"));
+            request.setAttribute("customer", customer);
+            showCreateCustomer(request, response);
         }
     }
 
@@ -187,18 +194,12 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-//    private void showCustomerListWithService(HttpServletRequest request, HttpServletResponse response) {
-//        request.setAttribute("customerList", service.findAllAndService());
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/customer_list.jsp");
-//        try {
-//            requestDispatcher.forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-    private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/furama/customer_add.jsp");
+
+    private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        response.sendRedirect("/furama/customer_add.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/furama/customer_add.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

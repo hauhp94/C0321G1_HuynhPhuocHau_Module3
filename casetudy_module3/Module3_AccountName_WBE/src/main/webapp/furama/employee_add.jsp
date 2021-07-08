@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: test
@@ -8,7 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee List</title>
+    <title>Add Employee</title>
+
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -22,43 +24,66 @@
                 <table class="table table-striped border-dark">
                     <tr>
                         <td>Tên nhân viên:</td>
-                        <td><input type="text" name="employee_name"></td>
+                        <td><input type="text" name="employee_name" value="${employee.getEmployee_name()}"></td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
                         <td><input type="date"
-                                   min="1920-01-01" max="2030-12-31" name="employee_birthday"></td>
+                                   min="1920-01-01" max="2030-12-31" name="employee_birthday"
+                                   value="${employee.getEmployee_birthday()}"></td>
                     </tr>
+
                     <tr>
                         <td>Số CMND:</td>
-                        <td><input type="text" name="employee_id_card"></td>
+                        <td>
+                            <input type="text" name="employee_id_card" value="${employee.getEmployee_id_card()}">
+                            <c:if test="${messEmployee_id_card != null}">
+                                <small class="form-text text-danger">${messEmployee_id_card}</small>
+                            </c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td>Mức lương:</td>
-                        <td><input type="number" step="any" name="employee_salary"></td>
+                        <td>
+                            <input type="number" step="any" name="employee_salary" value="${employee.getEmployee_salary()}">
+
+                            <c:if test="${messEmployee_salary != null}">
+                                <small  class="form-text text-danger">${messEmployee_salary}</small>
+                            </c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td><input type="text" name="employee_phone"></td>
+                        <td>
+                            <input type="text" name="employee_phone" value="${employee.getEmployee_phone()}">
+                            <c:if test="${messEmployee_phone != null}">
+                                <small  class="form-text text-danger">${messEmployee_phone}</small>
+                            </c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input type="text" name="employee_email"></td>
+                        <td>
+                            <input type="text" name="employee_email" value="${employee.getEmployee_email()}">
+                            <c:if test="${messEmployee_email != null}">
+                                <small class="form-text text-danger">${messEmployee_email}</small>
+                            </c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td>Địa chỉ:</td>
-                        <td><input type="text" name="employee_address"></td>
+                        <td><input type="text" name="employee_address" value="${employee.getEmployee_address()}"></td>
                     </tr>
                     <tr>
                         <td><label for="viTri">Vị trí:</label></td>
                         <td>
                             <select id="viTri" name="position_id">
-                                <option value="1" selected>Lễ tân</option>
-                                <option value="2">Phục vụ</option>
-                                <option value="3">Chuyên viên</option>
-                                <option value="4">Giám sát</option>
-                                <option value="5">Quản lý</option>
-                                <option value="6">Giám đốc</option>
+                                <option value="1" ${employee.getPosition_id() == 1 ? 'selected': ''}>Lễ tân</option>
+                                <option value="2" ${employee.getPosition_id() == 2 ? 'selected': ''}>Phục vụ</option>
+                                <option value="3" ${employee.getPosition_id() == 3 ? 'selected': ''}>Chuyên viên</option>
+                                <option value="4" ${employee.getPosition_id() == 4 ? 'selected': ''}>Giám sát</option>
+                                <option value="5" ${employee.getPosition_id() == 5 ? 'selected': ''}>Quản lý</option>
+                                <option value="6" ${employee.getPosition_id() == 6 ? 'selected': ''}>Giám đốc</option>
                             </select>
                         </td>
                     </tr>
@@ -66,10 +91,10 @@
                         <td><label for="trinhDo">Trình độ:</label></td>
                         <td>
                             <select id="trinhDo" name="education_degree_id">
-                                <option value="1" selected>Trung cấp</option>
-                                <option value="2">Cao đẳng</option>
-                                <option value="3">Đại học</option>
-                                <option value="4">Sau đại học</option>
+                                <option value="1" ${employee.getEducation_degree_id() == 1 ? 'selected': ''}>Trung cấp</option>
+                                <option value="2" ${employee.getEducation_degree_id() == 2 ? 'selected': ''}>Cao đẳng</option>
+                                <option value="3" ${employee.getEducation_degree_id() == 3 ? 'selected': ''}>Đại học</option>
+                                <option value="4" ${employee.getEducation_degree_id() == 4 ? 'selected': ''}>Sau đại học</option>
                             </select>
                         </td>
                     </tr>
@@ -77,16 +102,16 @@
                         <td><label for="boPhan">Bộ phận:</label></td>
                         <td>
                             <select id="boPhan" name="division_id">
-                                <option value="1" selected>Sale marketing</option>
-                                <option value="2">Hành chính</option>
-                                <option value="3">Phục vụ</option>
-                                <option value="4">Quản lý</option>
+                                <option value="1" ${employee.getDivision_id() == 1 ? 'selected': ''}>Sale marketing</option>
+                                <option value="2" ${employee.getDivision_id() == 2 ? 'selected': ''}>Hành chính</option>
+                                <option value="3" ${employee.getDivision_id() == 3 ? 'selected': ''}>Phục vụ</option>
+                                <option value="4" ${employee.getDivision_id() == 4 ? 'selected': ''}>Quản lý</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Username:</td>
-                        <td><input type="text" name="username"></td>
+                        <td><input type="text" name="username" value="${employee.getUsername()}"></td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -98,6 +123,7 @@
         </form>
     </div>
 </div>
+
 <jsp:include page="footer.jsp"></jsp:include>
 
 </body>

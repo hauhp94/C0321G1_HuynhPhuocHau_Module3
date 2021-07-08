@@ -4,9 +4,12 @@ import model.bean.Customer;
 import model.bean.Employee;
 import model.repository.CustomerRepository;
 import model.repository.CustomerRepositoryImpl;
+import model.service.common.Validate;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository repository = new CustomerRepositoryImpl();
@@ -17,8 +20,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void save(Customer customer) {
-        repository.save(customer);
+    public Map<String, String> save(Customer customer) {
+        Map<String, String> mapMessage = new HashMap<>();
+        if (Validate.validateCustomerCode(customer.getCustomer_code()) != null
+                || Validate.validateIdCard(customer.getCustomer_id_card()) != null
+                || Validate.validatePhoneNumber(customer.getCustomer_phone()) != null
+                || Validate.validateEmail(customer.getCustomer_email()) != null) {
+            mapMessage.put("code", Validate.validateCustomerCode(customer.getCustomer_code()));
+            mapMessage.put("idCard", Validate.validateIdCard(customer.getCustomer_id_card()));
+            mapMessage.put("phoneNumber", Validate.validatePhoneNumber(customer.getCustomer_phone()));
+            mapMessage.put("email", Validate.validateEmail(customer.getCustomer_email()));
+        } else {
+            repository.save(customer);
+        }
+        return mapMessage;
     }
 
     @Override
