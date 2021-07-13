@@ -25,14 +25,14 @@
         <div class="mx-5">
             <form action="/customer" method="post" class="form-inline my-2 my-lg-0">
                 <input type="hidden" name="action" value="search">
-                <input type="search" name="customer_name" placeholder="Name customer">
+                <input type="search" name="customer_name" placeholder="Name customer" class="form-control">
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search by name</button>
             </form>
         </div>
         <div class="mx-5">
             <form action="/customer" method="post" class="form-inline my-2 my-lg-0">
                 <input type="hidden" name="action" value="searchById">
-                <input type="search" name="customer_id" placeholder="Id customer">
+                <input type="search" name="customer_id" placeholder="Id customer" class="form-control">
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search by id</button>
             </form>
         </div>
@@ -44,7 +44,7 @@
         <h3>Customer list empty !</h3>
     </c:if>
     <c:if test="${not empty customerList}">
-        <table class="table table-striped table-bordered align-content-center " id="tableCustomer">
+        <table class="table table-striped table-bordered align-content-center d-inline-block w-100" style="overflow-x: scroll" id="tableCustomer">
             <thead class="thead-dark">
             <tr>
                 <th>ID</th>
@@ -141,18 +141,18 @@
                             <tr>
                                 <td>id</td>
                                 <td>
-                                    <input id="idCustomerEdit" name="customer_id" type="hidden">
+                                    <input id="idCustomerEdit" name="customer_id" type="hidden" class="form-control">
                                     <input id="idCustomerEditShow" name="customer_id" disabled>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tên khách hàng:</td>
-                                <td><input type="text" name="customer_name" id="nameCustomerEdit"></td>
+                                <td><input type="text" name="customer_name" id="nameCustomerEdit" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td><label for="customer_type">Loại khách hàng:</label></td>
                                 <td>
-                                    <select id="customer_type" name="customer_type">
+                                    <select id="customer_type" name="customer_type" class="form-control">
                                         <option value="1">Diamond</option>
                                         <option value="2">Platinium</option>
                                         <option value="3">Gold</option>
@@ -163,16 +163,16 @@
                             </tr>
                             <tr>
                                 <td>Mã khách hàng:</td>
-                                <td><input type="text" name="customer_code" id="customer_code"></td>
+                                <td><input type="text" name="customer_code" id="customer_code" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>Ngày sinh:</td>
-                                <td><input type="date" name="customer_birthday" id="customer_birthday"></td>
+                                <td><input type="date" name="customer_birthday" id="customer_birthday" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td><label for="customer_gender"> Giới tính:</label></td>
                                 <td>
-                                    <select id="customer_gender" name="customer_gender">
+                                    <select id="customer_gender" name="customer_gender" class="form-control">
                                         <option value="1">Nam</option>
                                         <option value="0">Nữ</option>
                                     </select>
@@ -184,19 +184,19 @@
                             </tr>
                             <tr>
                                 <td>Số CMND:</td>
-                                <td><input type="text" name="customer_id_card" id="customer_id_card"></td>
+                                <td><input type="text" name="customer_id_card" id="customer_id_card" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại:</td>
-                                <td><input type="text" name="customer_phone" id="customer_phone"></td>
+                                <td><input type="text" name="customer_phone" id="customer_phone" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
-                                <td><input type="text" name="customer_email" id="customer_email"></td>
+                                <td><input type="text" name="customer_email" id="customer_email" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ:</td>
-                                <td><input type="text" name="customer_address" id="customer_address"></td>
+                                <td><input type="text" name="customer_address" id="customer_address" class="form-control"></td>
                             </tr>
 
                         </table>

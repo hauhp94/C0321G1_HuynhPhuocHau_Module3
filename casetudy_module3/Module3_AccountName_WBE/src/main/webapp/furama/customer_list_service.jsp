@@ -25,7 +25,7 @@
             <div class="mx-5">
                 <form action="/customer" method="post" class="form-inline my-2 my-lg-0">
                     <input type="hidden" name="action" value="search">
-                    <input type="search" name="customer_name" placeholder="Name customer">
+                    <input type="search" name="customer_name" placeholder="Name customer" class="input-group">
                     <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search by name</button>
                 </form>
             </div>
@@ -44,7 +44,7 @@
             <h3>Customer list use service empty !</h3>
         </c:if>
         <c:if test="${not empty customerList}">
-            <table class="table table-striped table-bordered align-content-center" id="tableCustomerService">
+            <table class="table table-striped table-bordered align-content-center d-inline-block w-100" style="overflow-x: scroll" id="tableCustomerService">
                 <thead class="thead-dark">
                 <tr>
                     <th>ID</th>

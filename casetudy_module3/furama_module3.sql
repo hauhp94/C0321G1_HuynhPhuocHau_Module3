@@ -355,4 +355,20 @@ left join service on contract.service_id=service.service_id
 left join contract_detail on contract.contract_id=contract_detail.contract_id
 left join attach_service on contract_detail.attach_service_id=attach_service.attach_service_id
 left join customer_type on customer.customer_type_id=customer_type.customer_type_id;
+DELIMITER $$
 
+CREATE PROCEDURE get_all_customer_by_name(p_name varchar(45))
+
+BEGIN
+
+SELECT *, customer_type_name
+    
+FROM customer
+
+join customer_type on customer.customer_type_id=customer_type.customer_type_id
+
+where customer_name like concat('%',p_name,'%');
+
+    END$$
+
+DELIMITER ;

@@ -16,6 +16,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public static final String CUSTOMER_WHERE_ID = "select * from customer where customer_id=?;";
     public static final String DELETE_FROM_CUSTOMER_WHERE_ID = "delete from customer where customer_id=?;";
     private static final String SELECT_CUSTOMER_WITH_SERVICE = "select* from full_customer_service;";
+    private static final String SELECT_CUSTOMER_BY_NAME = "call get_all_customer_by_name(?);";
 
     @Override
     public List<Customer> findAll() {
@@ -147,11 +148,50 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public List<Customer> findByName(String name) {
         List<Customer> customerList = new ArrayList<>();
-        for (Customer customer : this.findAll()) {
-            if (customer.getCustomer_name().equals(name))
-                customerList.add(customer);
+        Connection connection = DBConnection.getConnection();
+        CallableStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareCall(SELECT_CUSTOMER_BY_NAME);
+                statement.setString(1, name);
+                resultSet = statement.executeQuery();
+                Customer customer = null;
+                while (resultSet.next()) {
+                    int id = Integer.parseInt(resultSet.getString("customer_id"));
+                    String code = resultSet.getString("customer_code");
+                    int customer_type_id = Integer.parseInt(resultSet.getString("customer_type_id"));
+                    String customer_type_name = resultSet.getString("customer_type_name");
+                    String nameC = resultSet.getString("customer_name");
+                    LocalDate birthday = LocalDate.parse(resultSet.getString("customer_birthday"));
+                    int gender = Integer.parseInt(resultSet.getString("customer_gender"));
+                    String id_card = resultSet.getString("customer_id_card");
+                    String phone = resultSet.getString("customer_phone");
+                    String email = resultSet.getString("customer_email");
+                    String address = resultSet.getString("customer_address");
+                    customer = new Customer(id, code, customer_type_id, customer_type_name, nameC, birthday, gender, id_card,
+                            phone, email, address);
+                    customerList.add(customer);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } finally {
+                try {
+                    resultSet.close();
+                    statement.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                DBConnection.close();
+            }
         }
         return customerList;
+//        List<Customer> customerList = new ArrayList<>();
+//        for (Customer customer : this.findAll()) {
+//            if (customer.getCustomer_name().equals(name))
+//                customerList.add(customer);
+//        }
+//        return customerList;
     }
 
     @Override

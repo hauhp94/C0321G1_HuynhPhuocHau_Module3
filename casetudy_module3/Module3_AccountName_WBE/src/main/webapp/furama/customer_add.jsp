@@ -20,11 +20,11 @@
             <h2>Add new customer</h2>
             <form action="/customer" method="post">
                 <input type="hidden" name="action" value="create">
-                <div class="custom-control custom-checkbox">
-                    <table class="table table-striped border-dark">
+                <div class="custom-control custom-checkbox ">
+                    <table class="table table-striped border-dark form-group">
                         <tr>
                             <td>Tên khách hàng:</td>
-                            <td><input type="text" name="customer_name" value="${customer.getCustomer_name()}" ></td>
+                            <td><input type="text" name="customer_name" value="${customer.getCustomer_name()}" class="form-control"></td>
 
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                         <tr>
                             <td>Mã khách hàng:</td>
                             <td>
-                                <input type="text" name="customer_code" value="${customer.getCustomer_code()}">
+                                <input type="text" name="customer_code" value="${customer.getCustomer_code()}"  class="form-control">
                                 <c:if test="${messCustomer_code != null}">
                                     <small class="form-text text-danger">${messCustomer_code}</small>
                                 </c:if>
@@ -53,21 +53,21 @@
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td><input type="date" name="customer_birthday" value="${customer.getCustomer_birthday()}"></td>
+                            <td><input type="date" name="customer_birthday" value="${customer.getCustomer_birthday()}"  class="form-control"></td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
                             <td>
                                 <input type="radio" id="nam" name="customer_gender" value="1" checked ${customer.getCustomer_gender() == 1 ? 'checked': ''}>
-                                <label for="nam">Nam</label><br>
+                                <label for="nam" >Nam</label><br>
                                 <input type="radio" id="nu" name="customer_gender" value="0" ${customer.getCustomer_gender() == 0 ? 'checked': ''}>
-                                <label for="nu">Nữ</label><br>
+                                <label for="nu" >Nữ</label><br>
                             </td>
                         </tr>
                         <tr>
                             <td>Số CMND:</td>
                             <td>
-                                <input type="text" name="customer_id_card" value="${customer.getCustomer_id_card()}">
+                                <input type="text" name="customer_id_card" value="${customer.getCustomer_id_card()}"  class="form-control">
                                 <c:if test="${messCustomer_id_card != null}">
                                     <small class="form-text text-danger">${messCustomer_id_card}</small>
                                 </c:if>
@@ -76,7 +76,7 @@
                         <tr>
                             <td>Số điện thoại:</td>
                             <td>
-                                <input type="text" name="customer_phone" value="${customer.getCustomer_phone()}">
+                                <input type="text" name="customer_phone" value="${customer.getCustomer_phone()}"  class="form-control">
                                 <c:if test="${messCustomer_phone != null}">
                                     <small class="form-text text-danger">${messCustomer_phone}</small>
                                 </c:if>
@@ -85,7 +85,7 @@
                         <tr>
                             <td>Email:</td>
                             <td>
-                                <input type="text" name="customer_email" value="${customer.getCustomer_email()}">
+                                <input type="text" name="customer_email" value="${customer.getCustomer_email()}"  class="form-control">
                                 <c:if test="${messCustomer_email != null}">
                                     <small class="form-text text-danger">${messCustomer_email}</small>
                                 </c:if>
@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td>Địa chỉ:</td>
-                            <td><input type="text" name="customer_address" value="${customer.getCustomer_address()}"></td>
+                            <td><input type="text" name="customer_address" value="${customer.getCustomer_address()}"  class="form-control"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
